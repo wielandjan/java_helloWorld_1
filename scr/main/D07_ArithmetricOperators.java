@@ -67,7 +67,5 @@ public class D07_ArithmetricOperators {
         // d = 1 / -0;
         // System.out.println("d: " + d);
 
-        System.out.println();
-
     }
 }
