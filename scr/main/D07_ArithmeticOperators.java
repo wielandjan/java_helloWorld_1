@@ -71,10 +71,10 @@ public class D07_ArithmeticOperators {
     System.out.println("d: " + d); // Outputs "NaN"
 
     /* Division by Zero with Integer */
-    d = 1 / 0;
-    System.out.println("d: " + d); // Throws ArithmeticException
-    d = 1 / -0;
-    System.out.println("d: " + d); // Throws ArithmeticException
+    // d = 1 / 0;
+    // System.out.println("d: " + d); // Throws ArithmeticException
+    // d = 1 / -0;
+    // System.out.println("d: " + d); // Throws ArithmeticException
 
   }
 
