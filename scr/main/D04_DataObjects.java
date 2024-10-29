@@ -23,7 +23,8 @@ public class D04_DataObjects {
         System.out.println("sizeInM: " + sizeInM);
         System.out.println("oldSizeInM: " + oldSizeInM);
 
-        // Fixed data object (constant)
-        final double PI = 3.14159265359;
+        /* Fixed data object */
+        final String description = "Java";
+        // description = "Python";
     }
 }
