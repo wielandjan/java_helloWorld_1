@@ -35,9 +35,10 @@ public class D06_Strings {
 
         // Alternative query format with string interpolation syntax - not currently
         // functional
-        // String sqlQuery2 = STR."SELECT \{ columns } FROM \{ table} WHERE \{
-        // condition};";
+        // String sqlQuery2 = STR."SELECT \{ columns } FROM \{ table} WHERE
+        // \{condition};";
         System.out.println(sqlQuery);
+
     }
 
 }
