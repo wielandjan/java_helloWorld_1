@@ -18,6 +18,7 @@ import exercises.rep_ex_util.Wuerfel;
 public class repetition_exercise {
 
     public static void main(String[] args) {
+        @SuppressWarnings("resource")
         Scanner scanner = new Scanner(System.in);
 
         // Create Player 1
@@ -68,21 +69,19 @@ public class repetition_exercise {
         System.out.println("*----------------*");
         System.out.println("* Runde 1, Zug 1 *");
         System.out.println("*----------------*");
-        System.out.println(kaempfer1.getName() + ": " + kaempfer1.getLp() + " LP, " +
-                kaempfer2.getName() + ": " + kaempfer2.getLp() + " LP\n");
+        System.out.println(spieler1.kaempfer.getName() + ": " + spieler1.kaempfer.getLp() + " LP, " +
+                spieler2.kaempfer.getName() + ": " + spieler2.kaempfer.getLp() + " LP\n");
 
-        simuliereAngriff(kaempfer1, kaempfer2);
+        simuliereAngriff(spieler1, spieler2);
 
         // Round 2: Player 2 attacks Player 1
         System.out.println("*----------------*");
         System.out.println("* Runde 1, Zug 2 *");
         System.out.println("*----------------*");
-        System.out.println(kaempfer1.getName() + ": " + kaempfer1.getLp() + " LP, " +
-                kaempfer2.getName() + ": " + kaempfer2.getLp() + " LP\n");
+        System.out.println(spieler1.kaempfer.getName() + ": " + spieler1.kaempfer.getLp() + " LP, " +
+                spieler2.kaempfer.getName() + ": " + spieler2.kaempfer.getLp() + " LP\n");
 
-        simuliereAngriff(kaempfer2, kaempfer1);
-
-        scanner.close();
+        simuliereAngriff(spieler2, spieler1);
     }
 
     /**
@@ -92,34 +91,35 @@ public class repetition_exercise {
      * @param angreifer   the attacking fighter
      * @param verteidiger the defending fighter
      */
-    public static void simuliereAngriff(Kaempfer angreifer, Kaempfer verteidiger) {
-        System.out.println(angreifer.getName() + " greift " + verteidiger.getName() + " mit "
-                + angreifer.getWaffe().getName() + " an.");
+    public static void simuliereAngriff(Spieler angreifer, Spieler verteidiger) {
+        System.out.println(angreifer.kaempfer.getName() + " greift " + verteidiger.kaempfer.getName() + " mit "
+                + angreifer.kaempfer.getWaffe().getName() + " an.");
 
         // Determine hits
         int treffer = 0;
-        System.out.print(angreifer.getName() + " würfelt: ");
-        for (int i = 0; i < angreifer.getWaffe().getAw(); i++) {
+        System.out.print(angreifer.kaempfer.getName() + " würfelt: ");
+        for (int i = 0; i < angreifer.kaempfer.getWaffe().getAw(); i++) {
             int wurf = Wuerfel.wuerfeln();
             System.out.print(wurf + " ");
             treffer += wurf;
         }
-        System.out.println("\n" + angreifer.getName() + " erzielt " + treffer + " Treffer.");
+        System.out.println("\n" + angreifer.kaempfer.getName() + " erzielt " + treffer + " Treffer.");
 
         // Determine blocks
         int blocks = 0;
-        System.out.print(verteidiger.getName() + " würfelt: ");
-        for (int i = 0; i < verteidiger.getVw(); i++) {
+        System.out.print(verteidiger.kaempfer.getName() + " würfelt: ");
+        for (int i = 0; i < verteidiger.kaempfer.getVw(); i++) {
             int wurf = Wuerfel.wuerfeln();
             System.out.print(wurf + " ");
             blocks += wurf;
         }
-        System.out.println("\n" + verteidiger.getName() + " erzielt " + blocks + " Blocks.");
+        System.out.println("\n" + verteidiger.kaempfer.getName() + " erzielt " + blocks + " Blocks.");
 
         // Calculate and apply damage
         int schaden = Math.max(0, treffer - blocks);
-        verteidiger.setLp(verteidiger.getLp() - schaden);
-        System.out.println(verteidiger.getName() + " erleidet " + schaden + " Schaden und hat noch "
-                + verteidiger.getLp() + " LP.\n");
+        verteidiger.kaempfer.setLp(verteidiger.kaempfer.getLp() - schaden);
+        System.out.println(verteidiger.kaempfer.getName() + " erleidet " + schaden + " Schaden und hat noch "
+                + verteidiger.kaempfer.getLp() + " LP.\n");
     }
+
 }

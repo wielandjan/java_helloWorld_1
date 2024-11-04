@@ -9,7 +9,7 @@ import java.util.Random;
  * @version 1.0
  */
 public class Wuerfel {
-    private static Random random = new Random();
+    public static Random random = new Random();
 
     /**
      * Rolls the dice and returns a random number between 1 and 6.

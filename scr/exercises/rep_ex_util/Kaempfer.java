@@ -8,25 +8,20 @@ package exercises.rep_ex_util;
  * @version 1.0
  */
 public class Kaempfer {
-    private String name;
-    private int lp;
-    private int vw;
-    private Waffe waffe;
+    public String name;
+    public int lp;
+    public int vw;
+    public Waffe waffe;
 
     /**
      * Constructs a new fighter with the specified name, life points, defensive
      * power, and weapon.
-     * 
-     * @param name  the name of the fighter
-     * @param lp    the life points of the fighter
-     * @param vw    the defensive power of the fighter
-     * @param waffe the weapon of the fighter
      */
-    public Kaempfer(String name, int lp, int vw, Waffe waffe) {
-        this.name = name;
-        this.lp = lp;
-        this.vw = vw;
-        this.waffe = waffe;
+    public Kaempfer(String nameValue, int lpValue, int vwValue, Waffe waffeValue) {
+        name = nameValue;
+        lp = lpValue;
+        vw = vwValue;
+        waffe = waffeValue;
     }
 
     /**
@@ -52,8 +47,8 @@ public class Kaempfer {
      * 
      * @param lp the new life points of the fighter
      */
-    public void setLp(int lp) {
-        this.lp = lp;
+    public void setLp(int lpValue) {
+        lp = lpValue;
     }
 
     /**

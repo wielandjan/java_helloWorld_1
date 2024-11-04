@@ -7,8 +7,8 @@ package exercises.rep_ex_util;
  * @version 1.0
  */
 public class Waffe {
-    private String name;
-    private int aw;
+    public String name;
+    public int aw;
 
     /**
      * Constructs a new weapon with the specified name and attack power.
@@ -16,9 +16,9 @@ public class Waffe {
      * @param name the name of the weapon
      * @param aw   the attack power of the weapon
      */
-    public Waffe(String name, int aw) {
-        this.name = name;
-        this.aw = aw;
+    public Waffe(String nameValue, int awValue) {
+        name = nameValue;
+        aw = awValue;
     }
 
     /**
