@@ -13,8 +13,8 @@ public class Waffe {
     /**
      * Constructs a new weapon with the specified name and attack power.
      * 
-     * @param name the name of the weapon
-     * @param aw   the attack power of the weapon
+     * @param nameValue the name of the weapon
+     * @param awValue   the attack power of the weapon
      */
     public Waffe(String nameValue, int awValue) {
         name = nameValue;

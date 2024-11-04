@@ -16,6 +16,11 @@ public class Kaempfer {
     /**
      * Constructs a new fighter with the specified name, life points, defensive
      * power, and weapon.
+     * 
+     * @param nameValue  the name of the fighter
+     * @param lpValue    the life points of the fighter
+     * @param vwValue    the defensive power of the fighter
+     * @param waffeValue the weapon of the fighter
      */
     public Kaempfer(String nameValue, int lpValue, int vwValue, Waffe waffeValue) {
         name = nameValue;
@@ -45,7 +50,7 @@ public class Kaempfer {
     /**
      * Sets the life points of the fighter.
      * 
-     * @param lp the new life points of the fighter
+     * @param lpValue the new life points of the fighter
      */
     public void setLp(int lpValue) {
         lp = lpValue;

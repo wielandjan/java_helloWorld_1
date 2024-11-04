@@ -8,9 +8,8 @@ import exercises.rep_ex_util.Wuerfel;
 
 /**
  * Main class for the repetition exercise, simulating a simple turn-based combat
- * between two players.
- * Prompts user input to create players and their fighters, then executes one
- * round of combat.
+ * between two players. Prompts user input to create players and their fighters,
+ * then executes one round of combat.
  * 
  * @author Jan Wieland
  * @version 1.0
@@ -88,8 +87,8 @@ public class repetition_exercise {
      * Simulates an attack by one fighter on another, calculating hits, blocks, and
      * resulting damage.
      * 
-     * @param angreifer   the attacking fighter
-     * @param verteidiger the defending fighter
+     * @param angreifer   the attacking player
+     * @param verteidiger the defending player
      */
     public static void simuliereAngriff(Spieler angreifer, Spieler verteidiger) {
         System.out.println(angreifer.kaempfer.getName() + " greift " + verteidiger.kaempfer.getName() + " mit "

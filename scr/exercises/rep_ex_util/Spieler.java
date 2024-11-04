@@ -13,7 +13,7 @@ public class Spieler {
     /**
      * Constructs a new player with the specified name.
      * 
-     * @param name the name of the player
+     * @param nameValue the name of the player
      */
     public Spieler(String nameValue) {
         name = nameValue;
@@ -31,7 +31,7 @@ public class Spieler {
     /**
      * Sets the fighter associated with the player.
      * 
-     * @param kaempfer the fighter to associate with the player
+     * @param kaempferValue the fighter to associate with the player
      */
     public void setKaempfer(Kaempfer kaempferValue) {
         kaempfer = kaempferValue;
