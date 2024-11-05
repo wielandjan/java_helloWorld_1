@@ -6,7 +6,7 @@ package exercises.rep_ex_util;
  * @author Jan Wieland
  * @version 1.0
  */
-public class Waffe {
+public class Weapon {
     public String name;
     public int aw;
 
@@ -16,7 +16,7 @@ public class Waffe {
      * @param nameValue the name of the weapon
      * @param awValue   the attack power of the weapon
      */
-    public Waffe(String nameValue, int awValue) {
+    public Weapon(String nameValue, int awValue) {
         name = nameValue;
         aw = awValue;
     }

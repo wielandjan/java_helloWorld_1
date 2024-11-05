@@ -6,16 +6,16 @@ package exercises.rep_ex_util;
  * @author Jan Wieland
  * @version 1.0
  */
-public class Spieler {
+public class Player {
     public String name;
-    public Kaempfer kaempfer;
+    public Fighter fighter;
 
     /**
      * Constructs a new player with the specified name.
      * 
      * @param nameValue the name of the player
      */
-    public Spieler(String nameValue) {
+    public Player(String nameValue) {
         name = nameValue;
     }
 
@@ -31,10 +31,10 @@ public class Spieler {
     /**
      * Sets the fighter associated with the player.
      * 
-     * @param kaempferValue the fighter to associate with the player
+     * @param fighterValue the fighter to associate with the player
      */
-    public void setKaempfer(Kaempfer kaempferValue) {
-        kaempfer = kaempferValue;
+    public void setFighter(Fighter fighterValue) {
+        fighter = fighterValue;
     }
 
     /**
@@ -42,7 +42,7 @@ public class Spieler {
      * 
      * @return the fighter associated with the player
      */
-    public Kaempfer getKaempfer() {
-        return kaempfer;
+    public Fighter getFighter() {
+        return fighter;
     }
 }

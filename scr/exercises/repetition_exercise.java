@@ -1,9 +1,9 @@
 package exercises;
 
 import java.util.Scanner;
-import exercises.rep_ex_util.Kaempfer;
-import exercises.rep_ex_util.Spieler;
-import exercises.rep_ex_util.Waffe;
+import exercises.rep_ex_util.Fighter;
+import exercises.rep_ex_util.Player;
+import exercises.rep_ex_util.Weapon;
 import exercises.rep_ex_util.Wuerfel;
 
 /**
@@ -22,65 +22,65 @@ public class repetition_exercise {
 
         // Create Player 1
         System.out.print("Geben Sie den Namen von Spieler 1 ein: ");
-        String spieler1Name = scanner.nextLine();
-        Spieler spieler1 = new Spieler(spieler1Name);
+        String player1Name = scanner.nextLine();
+        Player player1 = new Player(player1Name);
 
         System.out.print("Geben Sie den Namen des Kämpfers von Spieler 1 ein: ");
-        String kaempfer1Name = scanner.nextLine();
+        String fighter1Name = scanner.nextLine();
         System.out.print("Geben Sie die Lebenspunkte des Kämpfers ein: ");
-        int kaempfer1Lp = scanner.nextInt();
+        int fighter1Lp = scanner.nextInt();
         System.out.print("Geben Sie den Verteidigungswert (VW) des Kämpfers ein: ");
-        int kaempfer1Vw = scanner.nextInt();
+        int fighter1Vw = scanner.nextInt();
         scanner.nextLine();
         System.out.print("Geben Sie den Namen der Waffe von Spieler 1 ein: ");
-        String waffe1Name = scanner.nextLine();
+        String weapon1Name = scanner.nextLine();
         System.out.print("Geben Sie den Angriffswert (AW) der Waffe ein: ");
-        int waffe1Aw = scanner.nextInt();
+        int weapon1Aw = scanner.nextInt();
         scanner.nextLine();
 
-        Waffe waffe1 = new Waffe(waffe1Name, waffe1Aw);
-        Kaempfer kaempfer1 = new Kaempfer(kaempfer1Name, kaempfer1Lp, kaempfer1Vw, waffe1);
-        spieler1.setKaempfer(kaempfer1);
+        Weapon weapon1 = new Weapon(weapon1Name, weapon1Aw);
+        Fighter fighter1 = new Fighter(fighter1Name, fighter1Lp, fighter1Vw, weapon1);
+        player1.setFighter(fighter1);
 
         // Create Player 2
         System.out.print("Geben Sie den Namen von Spieler 2 ein: ");
-        String spieler2Name = scanner.nextLine();
-        Spieler spieler2 = new Spieler(spieler2Name);
+        String player2Name = scanner.nextLine();
+        Player player2 = new Player(player2Name);
 
         System.out.print("Geben Sie den Namen des Kämpfers von Spieler 2 ein: ");
-        String kaempfer2Name = scanner.nextLine();
+        String fighter2Name = scanner.nextLine();
         System.out.print("Geben Sie die Lebenspunkte des Kämpfers ein: ");
-        int kaempfer2Lp = scanner.nextInt();
+        int fighter2Lp = scanner.nextInt();
         System.out.print("Geben Sie den Verteidigungswert (VW) des Kämpfers ein: ");
-        int kaempfer2Vw = scanner.nextInt();
+        int fighter2Vw = scanner.nextInt();
         scanner.nextLine();
         System.out.print("Geben Sie den Namen der Waffe von Spieler 2 ein: ");
-        String waffe2Name = scanner.nextLine();
+        String weapon2Name = scanner.nextLine();
         System.out.print("Geben Sie den Angriffswert (AW) der Waffe ein: ");
-        int waffe2Aw = scanner.nextInt();
+        int weapon2Aw = scanner.nextInt();
         scanner.nextLine();
 
-        Waffe waffe2 = new Waffe(waffe2Name, waffe2Aw);
-        Kaempfer kaempfer2 = new Kaempfer(kaempfer2Name, kaempfer2Lp, kaempfer2Vw, waffe2);
-        spieler2.setKaempfer(kaempfer2);
+        Weapon weapon2 = new Weapon(weapon2Name, weapon2Aw);
+        Fighter fighter2 = new Fighter(fighter2Name, fighter2Lp, fighter2Vw, weapon2);
+        player2.setFighter(fighter2);
 
         // Round 1: Player 1 attacks Player 2
         System.out.println("*----------------*");
         System.out.println("* Runde 1, Zug 1 *");
         System.out.println("*----------------*");
-        System.out.println(spieler1.kaempfer.getName() + ": " + spieler1.kaempfer.getLp() + " LP, " +
-                spieler2.kaempfer.getName() + ": " + spieler2.kaempfer.getLp() + " LP\n");
+        System.out.println(player1.fighter.getName() + ": " + player1.fighter.getLp() + " LP, " +
+                player2.fighter.getName() + ": " + player2.fighter.getLp() + " LP\n");
 
-        simuliereAngriff(spieler1, spieler2);
+        simuliereAngriff(player1, player2);
 
         // Round 2: Player 2 attacks Player 1
         System.out.println("*----------------*");
         System.out.println("* Runde 1, Zug 2 *");
         System.out.println("*----------------*");
-        System.out.println(spieler1.kaempfer.getName() + ": " + spieler1.kaempfer.getLp() + " LP, " +
-                spieler2.kaempfer.getName() + ": " + spieler2.kaempfer.getLp() + " LP\n");
+        System.out.println(player1.fighter.getName() + ": " + player1.fighter.getLp() + " LP, " +
+                player2.fighter.getName() + ": " + player2.fighter.getLp() + " LP\n");
 
-        simuliereAngriff(spieler2, spieler1);
+        simuliereAngriff(player2, player1);
     }
 
     /**
@@ -90,35 +90,35 @@ public class repetition_exercise {
      * @param angreifer   the attacking player
      * @param verteidiger the defending player
      */
-    public static void simuliereAngriff(Spieler angreifer, Spieler verteidiger) {
-        System.out.println(angreifer.kaempfer.getName() + " greift " + verteidiger.kaempfer.getName() + " mit "
-                + angreifer.kaempfer.getWaffe().getName() + " an.");
+    public static void simuliereAngriff(Player angreifer, Player verteidiger) {
+        System.out.println(angreifer.fighter.getName() + " greift " + verteidiger.fighter.getName() + " mit "
+                + angreifer.fighter.getWaffe().getName() + " an.");
 
         // Determine hits
         int treffer = 0;
-        System.out.print(angreifer.kaempfer.getName() + " würfelt: ");
-        for (int i = 0; i < angreifer.kaempfer.getWaffe().getAw(); i++) {
+        System.out.print(angreifer.fighter.getName() + " würfelt: ");
+        for (int i = 0; i < angreifer.fighter.getWaffe().getAw(); i++) {
             int wurf = Wuerfel.wuerfeln();
             System.out.print(wurf + " ");
             treffer += wurf;
         }
-        System.out.println("\n" + angreifer.kaempfer.getName() + " erzielt " + treffer + " Treffer.");
+        System.out.println("\n" + angreifer.fighter.getName() + " erzielt " + treffer + " Treffer.");
 
         // Determine blocks
         int blocks = 0;
-        System.out.print(verteidiger.kaempfer.getName() + " würfelt: ");
-        for (int i = 0; i < verteidiger.kaempfer.getVw(); i++) {
+        System.out.print(verteidiger.fighter.getName() + " würfelt: ");
+        for (int i = 0; i < verteidiger.fighter.getVw(); i++) {
             int wurf = Wuerfel.wuerfeln();
             System.out.print(wurf + " ");
             blocks += wurf;
         }
-        System.out.println("\n" + verteidiger.kaempfer.getName() + " erzielt " + blocks + " Blocks.");
+        System.out.println("\n" + verteidiger.fighter.getName() + " erzielt " + blocks + " Blocks.");
 
         // Calculate and apply damage
         int schaden = Math.max(0, treffer - blocks);
-        verteidiger.kaempfer.setLp(verteidiger.kaempfer.getLp() - schaden);
-        System.out.println(verteidiger.kaempfer.getName() + " erleidet " + schaden + " Schaden und hat noch "
-                + verteidiger.kaempfer.getLp() + " LP.\n");
+        verteidiger.fighter.setLp(verteidiger.fighter.getLp() - schaden);
+        System.out.println(verteidiger.fighter.getName() + " erleidet " + schaden + " Schaden und hat noch "
+                + verteidiger.fighter.getLp() + " LP.\n");
     }
 
 }
