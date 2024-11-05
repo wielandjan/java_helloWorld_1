@@ -87,38 +87,38 @@ public class repetition_exercise {
      * Simulates an attack by one fighter on another, calculating hits, blocks, and
      * resulting damage.
      * 
-     * @param angreifer   the attacking player
-     * @param verteidiger the defending player
+     * @param attacker the attacking player
+     * @param defender the defending player
      */
-    public static void simuliereAngriff(Player angreifer, Player verteidiger) {
-        System.out.println(angreifer.fighter.getName() + " greift " + verteidiger.fighter.getName() + " mit "
-                + angreifer.fighter.getWaffe().getName() + " an.");
+    public static void simuliereAngriff(Player attacker, Player defender) {
+        System.out.println(attacker.fighter.getName() + " greift " + defender.fighter.getName() + " mit "
+                + attacker.fighter.getWaffe().getName() + " an.");
 
         // Determine hits
-        int treffer = 0;
-        System.out.print(angreifer.fighter.getName() + " würfelt: ");
-        for (int i = 0; i < angreifer.fighter.getWaffe().getAw(); i++) {
+        int hits = 0;
+        System.out.print(attacker.fighter.getName() + " würfelt: ");
+        for (int i = 0; i < attacker.fighter.getWaffe().getAw(); i++) {
             int wurf = Wuerfel.wuerfeln();
             System.out.print(wurf + " ");
-            treffer += wurf;
+            hits += wurf;
         }
-        System.out.println("\n" + angreifer.fighter.getName() + " erzielt " + treffer + " Treffer.");
+        System.out.println("\n" + attacker.fighter.getName() + " erzielt " + hits + " Treffer.");
 
         // Determine blocks
         int blocks = 0;
-        System.out.print(verteidiger.fighter.getName() + " würfelt: ");
-        for (int i = 0; i < verteidiger.fighter.getVw(); i++) {
+        System.out.print(defender.fighter.getName() + " würfelt: ");
+        for (int i = 0; i < defender.fighter.getVw(); i++) {
             int wurf = Wuerfel.wuerfeln();
             System.out.print(wurf + " ");
             blocks += wurf;
         }
-        System.out.println("\n" + verteidiger.fighter.getName() + " erzielt " + blocks + " Blocks.");
+        System.out.println("\n" + defender.fighter.getName() + " erzielt " + blocks + " Blocks.");
 
         // Calculate and apply damage
-        int schaden = Math.max(0, treffer - blocks);
-        verteidiger.fighter.setLp(verteidiger.fighter.getLp() - schaden);
-        System.out.println(verteidiger.fighter.getName() + " erleidet " + schaden + " Schaden und hat noch "
-                + verteidiger.fighter.getLp() + " LP.\n");
+        int demage = Math.max(0, hits - blocks);
+        defender.fighter.setLp(defender.fighter.getLp() - demage);
+        System.out.println(defender.fighter.getName() + " erleidet " + demage + " Schaden und hat noch "
+                + defender.fighter.getLp() + " LP.\n");
     }
 
 }
