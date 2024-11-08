@@ -8,10 +8,12 @@ package exercises.rep_ex_util;
  * @version 1.0
  */
 public class Fighter {
-    public String name;
-    public int lp;
-    public int vw;
-    public Weapon weapon;
+    private String name;
+    private String rasse;
+    private int lp;
+    private int vw;
+    private int rw;
+    private Weapon weapon;
 
     /**
      * Constructs a new fighter with the specified name, life points, defensive
@@ -22,11 +24,12 @@ public class Fighter {
      * @param vwValue     the defensive power of the fighter
      * @param weaponValue the weapon of the fighter
      */
-    public Fighter(String nameValue, int lpValue, int vwValue, Weapon weaponValue) {
+    public Fighter(String nameValue, String rasseValue, int lpValue, int vwValue, int rwValue) {
         name = nameValue;
+        rasse = rasseValue;
         lp = lpValue;
         vw = vwValue;
-        weapon = weaponValue;
+        rw = rwValue;
     }
 
     /**
@@ -36,6 +39,15 @@ public class Fighter {
      */
     public String getName() {
         return name;
+    }
+
+    /**
+     * Returns the rasse of the fighter.
+     * 
+     * @return the rasse of the fighter
+     */
+    public String getRace() {
+        return rasse;
     }
 
     /**
@@ -66,11 +78,30 @@ public class Fighter {
     }
 
     /**
+     * Returns the defensive power of the fighter.
+     * 
+     * @return the defensive power of the fighter
+     */
+    public int getRw() {
+        return rw;
+    }
+
+    /**
      * Returns the weapon of the fighter.
      * 
      * @return the weapon of the fighter
      */
-    public Weapon getWaffe() {
+    public Weapon getWeapon() {
         return weapon;
     }
+
+    /**
+     * Sets the weapon of the fighter.
+     * 
+     * @return the weapon of the fighter
+     */
+    public void setWeapon(Weapon weaponValue) {
+        weapon = weaponValue;
+    }
+
 }

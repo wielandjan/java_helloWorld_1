@@ -1,10 +1,18 @@
 package exercises;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
 import java.util.Scanner;
+
+import exercises.rep_ex_util.CombatActionTyp;
+import exercises.rep_ex_util.DataFactory;
+import exercises.rep_ex_util.Dice;
 import exercises.rep_ex_util.Fighter;
 import exercises.rep_ex_util.Player;
 import exercises.rep_ex_util.Weapon;
-import exercises.rep_ex_util.Wuerfel;
+import exercises.rep_ex_util.WeaponTyp;
+import exercises.rep_ex_util.Dice;
 
 /**
  * Main class for the repetition exercise, simulating a simple turn-based combat
@@ -17,108 +25,359 @@ import exercises.rep_ex_util.Wuerfel;
 public class repetition_exercise {
 
     public static void main(String[] args) {
-        @SuppressWarnings("resource")
         Scanner scanner = new Scanner(System.in);
+        Random random = new Random();
 
-        // Create Player 1
-        System.out.print("Geben Sie den Namen von Spieler 1 ein: ");
-        String player1Name = scanner.nextLine();
-        Player player1 = new Player(player1Name);
+        Player[] players = new Player[2];
 
-        System.out.print("Geben Sie den Namen des Kämpfers von Spieler 1 ein: ");
-        String fighter1Name = scanner.nextLine();
-        System.out.print("Geben Sie die Lebenspunkte des Kämpfers ein: ");
-        int fighter1Lp = scanner.nextInt();
-        System.out.print("Geben Sie den Verteidigungswert (VW) des Kämpfers ein: ");
-        int fighter1Vw = scanner.nextInt();
-        scanner.nextLine();
-        System.out.print("Geben Sie den Namen der Waffe von Spieler 1 ein: ");
-        String weapon1Name = scanner.nextLine();
-        System.out.print("Geben Sie den Angriffswert (AW) der Waffe ein: ");
-        int weapon1Aw = scanner.nextInt();
-        scanner.nextLine();
+        initilizeGame(scanner, random, players);
 
-        Weapon weapon1 = new Weapon(weapon1Name, weapon1Aw);
-        Fighter fighter1 = new Fighter(fighter1Name, fighter1Lp, fighter1Vw, weapon1);
-        player1.setFighter(fighter1);
+        game(scanner, random, players);
 
-        // Create Player 2
-        System.out.print("Geben Sie den Namen von Spieler 2 ein: ");
-        String player2Name = scanner.nextLine();
-        Player player2 = new Player(player2Name);
-
-        System.out.print("Geben Sie den Namen des Kämpfers von Spieler 2 ein: ");
-        String fighter2Name = scanner.nextLine();
-        System.out.print("Geben Sie die Lebenspunkte des Kämpfers ein: ");
-        int fighter2Lp = scanner.nextInt();
-        System.out.print("Geben Sie den Verteidigungswert (VW) des Kämpfers ein: ");
-        int fighter2Vw = scanner.nextInt();
-        scanner.nextLine();
-        System.out.print("Geben Sie den Namen der Waffe von Spieler 2 ein: ");
-        String weapon2Name = scanner.nextLine();
-        System.out.print("Geben Sie den Angriffswert (AW) der Waffe ein: ");
-        int weapon2Aw = scanner.nextInt();
-        scanner.nextLine();
-
-        Weapon weapon2 = new Weapon(weapon2Name, weapon2Aw);
-        Fighter fighter2 = new Fighter(fighter2Name, fighter2Lp, fighter2Vw, weapon2);
-        player2.setFighter(fighter2);
-
-        // Round 1: Player 1 attacks Player 2
-        System.out.println("*----------------*");
-        System.out.println("* Runde 1, Zug 1 *");
-        System.out.println("*----------------*");
-        System.out.println(player1.fighter.getName() + ": " + player1.fighter.getLp() + " LP, " +
-                player2.fighter.getName() + ": " + player2.fighter.getLp() + " LP\n");
-
-        simuliereAngriff(player1, player2);
-
-        // Round 2: Player 2 attacks Player 1
-        System.out.println("*----------------*");
-        System.out.println("* Runde 1, Zug 2 *");
-        System.out.println("*----------------*");
-        System.out.println(player1.fighter.getName() + ": " + player1.fighter.getLp() + " LP, " +
-                player2.fighter.getName() + ": " + player2.fighter.getLp() + " LP\n");
-
-        simuliereAngriff(player2, player1);
     }
 
-    /**
-     * Simulates an attack by one fighter on another, calculating hits, blocks, and
-     * resulting damage.
-     * 
-     * @param attacker the attacking player
-     * @param defender the defending player
-     */
-    public static void simuliereAngriff(Player attacker, Player defender) {
-        System.out.println(attacker.fighter.getName() + " greift " + defender.fighter.getName() + " mit "
-                + attacker.fighter.getWaffe().getName() + " an.");
+    public static void initilizeGame(Scanner scanner, Random random, Player[] players) {
 
-        // Determine hits
-        int hits = 0;
-        System.out.print(attacker.fighter.getName() + " würfelt: ");
-        for (int i = 0; i < attacker.fighter.getWaffe().getAw(); i++) {
-            int wurf = Wuerfel.wuerfeln();
-            System.out.print(wurf + " ");
-            hits += wurf;
+        System.out.println("Willkommen bei Kill Team!");
+        System.out.println("");
+
+        System.out.print("Geben Sie den Namen von Spieler 1 ein: ");
+        players[0] = new Player(scanner.nextLine());
+
+        System.out.print("Geben Sie den Namen von Spieler 2 ein: ");
+        players[1] = new Player(scanner.nextLine());
+
+        List<Fighter> availableFighters = DataFactory.createFighters();
+
+        System.out.println("");
+        System.out.println("Willkommen zur Kämpfer-Auswahl!");
+
+        // Jeder Spieler wählt 3 Kämpfer aus der Liste
+
+        int playerRandom = (random.nextInt(2));
+
+        for (int i = 0; i < 3; i++) {
+
+            switch (playerRandom) {
+                case 0:
+                    System.out.println("");
+                    System.out.printf("%s, wähle deinen Kämpfer %d :\n", players[0].getName(), (i + 1));
+                    System.out.println("--------------------------------------");
+                    players[0].setFighter(selectInitFighter(availableFighters, scanner, random));
+
+                    System.out.println("");
+                    System.out.printf("%s, wähle deinen Kämpfer %d :\n", players[1].getName(), (i + 1));
+                    System.out.println("--------------------------------------");
+                    players[1].setFighter(selectInitFighter(availableFighters, scanner, random));
+                    break;
+                case 1:
+                    System.out.println("");
+                    System.out.printf("%s, wähle deinen Kämpfer %d :\n", players[1].getName(), (i + 1));
+                    System.out.println("--------------------------------------");
+                    players[1].setFighter(selectInitFighter(availableFighters, scanner, random));
+
+                    System.out.println("");
+                    System.out.printf("%s, wähle deinen Kämpfer %d :\n", players[0].getName(), (i + 1));
+                    System.out.println("--------------------------------------");
+                    players[0].setFighter(selectInitFighter(availableFighters, scanner, random));
+                    break;
+
+                default:
+                    break;
+            }
+
         }
-        System.out.println("\n" + attacker.fighter.getName() + " erzielt " + hits + " Treffer.");
+    }
 
-        // Determine blocks
-        int blocks = 0;
-        System.out.print(defender.fighter.getName() + " würfelt: ");
-        for (int i = 0; i < defender.fighter.getVw(); i++) {
-            int wurf = Wuerfel.wuerfeln();
-            System.out.print(wurf + " ");
-            blocks += wurf;
+    public static Fighter selectInitFighter(List<Fighter> availableFighters, Scanner scanner, Random random) {
+        for (int i = 0; i < availableFighters.size(); i++) {
+            Fighter fighter = availableFighters.get(i);
+            System.out.println((i + 1) + ". " + fighter.getName() + " (" + fighter.getRace() + ") - LP: "
+                    + fighter.getLp() + ", VW: " + fighter.getVw() + ", RW: " + fighter.getRw());
         }
-        System.out.println("\n" + defender.fighter.getName() + " erzielt " + blocks + " Blocks.");
+        int choice = -1;
+        while (choice < 1 || choice > availableFighters.size()) {
+            System.out.println("");
+            System.out.print("Bitte wähle einen Kämpfer durch Eingabe der Nummer: ");
+            choice = scanner.nextInt();
+            if (choice < 1 || choice > availableFighters.size()) {
+                System.out.println("Ungültige Auswahl. Bitte versuche es erneut.");
+            }
+        }
 
-        // Calculate and apply damage
-        int demage = Math.max(0, hits - blocks);
-        defender.fighter.setLp(defender.fighter.getLp() - demage);
-        System.out.println(defender.fighter.getName() + " erleidet " + demage + " Schaden und hat noch "
-                + defender.fighter.getLp() + " LP.\n");
+        // Entferne den gewählten Kämpfer aus der Liste der verfügbaren Kämpfer
+        Fighter chosenFighter = availableFighters.remove(choice - 1);
+        System.out.println("Du hast " + chosenFighter.getName() + " gewählt!");
+
+        return chosenFighter;
+    }
+
+    public static void game(Scanner scanner, Random random, Player[] players) {
+
+        for (int i = 1; i > 0; i++) {
+            int playerRandom = (random.nextInt(2));
+            int opponentRandom = (playerRandom == 0) ? 1 : 0;
+
+            System.out.println("");
+            System.out.println("---------------------------------");
+            System.out.printf("%s beginnt mit seinem Angriff!\n", players[playerRandom].getName());
+
+            for (int j = 1; j < 3; j++) {
+                System.out.println("*----------------*");
+                System.out.printf("* Runde %d, Zug %d\n *", i, j);
+                System.out.println("*----------------*");
+                System.out.println("");
+
+                if (j == 1) {
+                    simulateAttack(scanner, players[playerRandom], selectFighter(scanner, players[playerRandom]),
+                            players[opponentRandom], selectFighter(scanner, players[opponentRandom]));
+                } else {
+                    simulateAttack(scanner, players[opponentRandom], selectFighter(scanner, players[opponentRandom]),
+                            players[playerRandom], selectFighter(scanner, players[playerRandom]));
+                }
+
+            }
+        }
+    }
+
+    public static void simulateAttack(Scanner scanner, Player attackPlayer, Fighter attacker, Player defendPlayer,
+            Fighter defender) {
+
+        System.out.println("");
+        System.out.printf("%s greift mit %s (LP - %d) greift %s (LP - %d) von %s an!\n", attackPlayer.getName(),
+                attacker.getName(), attacker.getLp(), defender.getName(), attacker.getLp(), defendPlayer.getName());
+
+        attacker.setWeapon(selectAttackWeapon(scanner, attacker, attackPlayer));
+        defender.setWeapon(setDefendWeapon(scanner, defender, attacker, defendPlayer));
+
+        if (attacker.getWeapon().getTyp().equals(WeaponTyp.Fernkampfwaffe)) {
+            simulateRangeAttack(attacker, defender);
+            if (defender.getLp() <= 0) {
+                defendPlayer.removeFighter(defender);
+            }
+        }
+        if (attacker.getWeapon().getTyp().equals(WeaponTyp.Nahkampfwaffe)) {
+            // simulateMeleeAttack(attacker, defender);
+        }
+    }
+
+    public static Weapon selectAttackWeapon(Scanner scanner, Fighter fighter, Player player) {
+        System.out.println("");
+        System.out.printf("%s, wähle deine Waffe für %s :\n", player.getName(), fighter.getName());
+        System.out.println("--------------------------------------");
+
+        List<Weapon> availableWeapons = DataFactory.createWeapons();
+        List<Weapon> raceWeapons = new ArrayList<>();
+
+        for (int i = 0; i < availableWeapons.size(); i++) {
+
+            Weapon weapon = availableWeapons.get(i);
+            if (weapon.getRace().equals(fighter.getRace())) {
+                raceWeapons.add(weapon);
+            }
+        }
+
+        for (int i = 0; i < raceWeapons.size(); i++) {
+            Weapon weapon = raceWeapons.get(i);
+            System.out.println((i + 1) + ". " + weapon.getName() + " (" + weapon.getTyp() + ") - AW: "
+                    + weapon.getAw() + ", BF_KG: " + weapon.getBF_KG() + ", KS: " + weapon.getKs() + ", SW: "
+                    + weapon.getSw());
+        }
+
+        int choice = -1;
+        while (choice < 1 || choice > raceWeapons.size()) {
+            System.out.print("Bitte wähle eine Waffe durch Eingabe der Nummer: ");
+            choice = scanner.nextInt();
+            if (choice < 1 || choice > raceWeapons.size()) {
+                System.out.println("Ungsültige Auswahl. Bitte versuche es erneut.");
+            }
+        }
+
+        Weapon chosenWeapon = (raceWeapons.get(choice - 1));
+        System.out.println("Du hast " + chosenWeapon.getName() + " gewählt!");
+
+        return chosenWeapon;
+
+    }
+
+    public static Weapon setDefendWeapon(Scanner scanner, Fighter fighter, Fighter opponend, Player player) {
+        System.out.println("");
+        System.out.printf("%s, wähle deine Waffe für %s :\n", player.getName(), fighter.getName());
+        System.out.println("--------------------------------------");
+
+        List<Weapon> availableWeapons = DataFactory.createWeapons();
+        List<Weapon> raceWeapons = new ArrayList<>();
+        List<Weapon> typRaceWeapons = new ArrayList<>();
+
+        for (int i = 0; i < availableWeapons.size(); i++) {
+
+            Weapon weapon = availableWeapons.get(i);
+            if (weapon.getRace().equals(fighter.getRace())) {
+                raceWeapons.add(weapon);
+            }
+        }
+
+        for (int i = 0; i < raceWeapons.size(); i++) {
+
+            Weapon weapon = raceWeapons.get(i);
+            if (weapon.getTyp().equals(opponend.getWeapon().getTyp())) {
+                typRaceWeapons.add(weapon);
+            }
+        }
+
+        for (int i = 0; i < typRaceWeapons.size(); i++) {
+            Weapon weapon = typRaceWeapons.get(i);
+            System.out.println((i + 1) + ". " + weapon.getName() + " (" + weapon.getTyp() + ") - AW: "
+                    + weapon.getAw() + ", BF_KG: " + weapon.getBF_KG() + ", KS: " + weapon.getKs() + ", SW: "
+                    + weapon.getSw());
+        }
+
+        int choice = -1;
+        while (choice < 1 || choice > typRaceWeapons.size()) {
+            System.out.print("Bitte wähle eine Waffe durch Eingabe der Nummer: ");
+            choice = scanner.nextInt();
+            if (choice < 1 || choice > typRaceWeapons.size()) {
+                System.out.println("Ungsültige Auswahl. Bitte versuche es erneut.");
+            }
+        }
+
+        Weapon chosenWeapon = (typRaceWeapons.get(choice - 1));
+        System.out.println("Du hast " + chosenWeapon.getName() + " gewählt!");
+
+        return chosenWeapon;
+
+    }
+
+    public static Fighter selectFighter(Scanner scanner, Player player) {
+        System.out.println("");
+        System.out.printf("%s, wähle deinen Kämpfer:\n", player.getName());
+        System.out.println("--------------------------------------");
+
+        for (int i = 0; i < player.getFighters().size(); i++) {
+            Fighter fighter = player.getFighters().get(i);
+            System.out.println((i + 1) + ". " + fighter.getName() + " (" + fighter.getRace() + ") - LP: "
+                    + fighter.getLp() + ", VW: " + fighter.getVw() + ", RW: " + fighter.getRw());
+        }
+        int choice = -1;
+        while (choice < 1 || choice > player.getFighters().size()) {
+            System.out.println("");
+            System.out.print("Bitte wähle einen Kämpfer durch Eingabe der Nummer: ");
+            choice = scanner.nextInt();
+            if (choice < 1 || choice > player.getFighters().size()) {
+                System.out.println("Ungültige Auswahl. Bitte versuche es erneut.");
+            }
+        }
+
+        Fighter chosenFighter = player.getFighters().get(choice - 1);
+        System.out.println("Du hast " + chosenFighter.getName() + " gewählt!");
+
+        return chosenFighter;
+
+    }
+
+    public static void simulateRangeAttack(Fighter attacker, Fighter defender) {
+        System.out.println("");
+        System.out.printf("%s und %s haben gewürfelt:\n", attacker.getName(), defender.getName());
+
+        List<Integer> attackDices = new ArrayList<>();
+        List<CombatActionTyp> attackTyps = new ArrayList<>();
+
+        List<Integer> defendDices = new ArrayList<>();
+        List<CombatActionTyp> defendTyps = new ArrayList<>();
+
+        attackDices = Dice.wuerfeln(attacker.getWeapon().getAw());
+        defendDices = Dice.wuerfeln(defender.getVw());
+
+        for (int i = 0; i < attackDices.size(); i++) {
+
+            if (attackDices.get(i) < attacker.getWeapon().getBF_KG()) {
+                attackTyps.add(CombatActionTyp.verfehlt);
+            } else if (attackDices.get(i) >= attacker.getWeapon().getBF_KG()) {
+                attackTyps.add(CombatActionTyp.Treffer);
+            } else if (attackDices.get(i) == 6) {
+                attackTyps.add(CombatActionTyp.Kritischer_Treffer);
+
+            }
+        }
+
+        for (int i = 0; i < defendDices.size(); i++) {
+
+            if (defendDices.get(i) < defender.getWeapon().getBF_KG()) {
+                defendTyps.add(CombatActionTyp.verfehlt);
+            } else if (defendDices.get(i) >= defender.getWeapon().getBF_KG()) {
+                defendTyps.add(CombatActionTyp.Treffer);
+            } else if (defendDices.get(i) == 6) {
+                defendTyps.add(CombatActionTyp.Kritischer_Treffer);
+
+            }
+        }
+
+        List<Integer> damages = new ArrayList<>();
+
+        for (int i = 0; i < attackTyps.size() || i < defendTyps.size(); i++) {
+
+            if (attackTyps.get(i) == CombatActionTyp.verfehlt
+                    && (defendTyps.get(i) == CombatActionTyp.verfehlt || defendTyps.get(i) == CombatActionTyp.Block
+                            || defendTyps.get(i) == CombatActionTyp.Kritischer_Block)) {
+                damages.add(0);
+
+            } else if (attackTyps.get(i) == CombatActionTyp.Treffer && defendTyps.get(i) == CombatActionTyp.verfehlt) {
+                damages.add(attacker.getWeapon().getSw());
+
+            } else if (attackTyps.get(i) == CombatActionTyp.Treffer && defendTyps.get(i) == CombatActionTyp.Block) {
+                damages.add(0);
+
+            } else if (attackTyps.get(i) == CombatActionTyp.Treffer
+                    && defendTyps.get(i) == CombatActionTyp.Kritischer_Block) {
+                damages.add(0);
+
+            } else if (attackTyps.get(i) == CombatActionTyp.Kritischer_Treffer
+                    && (defendTyps.get(i) == CombatActionTyp.verfehlt || defendTyps.get(i) == CombatActionTyp.Block)) {
+                damages.add(attacker.getWeapon().getKs());
+
+            } else if (attackTyps.get(i) == CombatActionTyp.Kritischer_Treffer
+                    && defendTyps.get(i) == CombatActionTyp.Kritischer_Block) {
+                damages.add(0);
+            }
+        }
+        for (int i = 0; i < damages.size(); i++) {
+            defender.setLp(defender.getLp() - damages.get(i));
+        }
+
+        System.out.println("");
+        System.out.print(attacker.getName());
+        System.out.print(" | ");
+        for (int i = 0; i < attackTyps.size(); i++) {
+            System.out.print(attackTyps.get(i) + " | ");
+        }
+        System.out.print("\n");
+
+        System.out.print(defender.getName());
+        System.out.print(" | ");
+        for (int i = 0; i < defendTyps.size(); i++) {
+            System.out.print(defendTyps.get(i) + " | ");
+        }
+        System.out.print("\n");
+
+        for (int i = 0; i < attackTyps.size() || i < defendTyps.size(); i++) {
+            System.out.print("____");
+        }
+        System.out.print("\n");
+
+        System.out.print("Schaden");
+        System.out.print(" | ");
+        for (int i = 0; i < damages.size(); i++) {
+            System.out.print(damages.get(i) + " | ");
+        }
+        System.out.print("\n");
+
+        System.out.println("");
+        if (defender.getLp() > 0) {
+            System.out.printf("%s hat nach dem Fernangriff %d LP!");
+        } else {
+            System.out.printf("%s ist getötet worden!");
+        }
+
     }
 
 }
