@@ -492,12 +492,24 @@ public class repetition_exercise {
             System.out.printf("Angriff %d\n", i + 1);
             System.out.println("------------------------");
             System.out.printf("%s mit %s, wähle deinen Angriff aus:\n", attackPlayer.getName(), attacker.getName());
+            System.out.printf("%s mit %s, AW: %d, SW: %d, BF_KG: %d, KS: %d\n", attackPlayer.getName(),
+                    attacker.getName(),
+                    attacker.getWeapon().getAw(), attacker.getWeapon().getSw(), attacker.getWeapon().getBF_KG(),
+                    attacker.getWeapon().getKs());
+            System.out.printf("%s mit %s, VW: %d, RW: %d, BF_KG: %d\n", defendPlayer.getName(), defender.getName(),
+                    defender.getVw(), defender.getRw(), defender.getWeapon().getBF_KG());
 
             CombatActionTyp attackTyp = selectCombatActions(scanner, attackTyps);
             attackTyps.remove(attackTyps.indexOf(attackTyp));
 
             System.out.printf("%s mit %s ( LP - %d), wähle deine Verteidigung aus:\n", defendPlayer.getName(),
                     defender.getName(), defender.getLp());
+            System.out.printf("%s mit %s, VW: %d, RW: %d, BF_KG: %d\n", defendPlayer.getName(), defender.getName(),
+                    defender.getVw(), defender.getRw(), defender.getWeapon().getBF_KG());
+            System.out.printf("%s mit %s, AW: %d, SW: %d, BF_KG: %d, KS: %d\n", attackPlayer.getName(),
+                    attacker.getName(),
+                    attacker.getWeapon().getAw(), attacker.getWeapon().getSw(), attacker.getWeapon().getBF_KG(),
+                    attacker.getWeapon().getKs());
 
             CombatActionTyp defendTyp = selectCombatActions(scanner, defendTyps);
             defendTyps.remove(defendTyps.indexOf(defendTyp));
