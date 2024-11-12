@@ -423,7 +423,7 @@ public class repetition_exercise {
         if (defender.getLp() > 0) {
             System.out.printf("%s hat nach dem Fernangriff %d LP!\n", defender.getName(), defender.getLp());
         } else {
-            System.out.printf("%s ist getötet worden!", defender.getName());
+            System.out.printf("%s ist getötet worden!\n", defender.getName());
         }
     }
 
