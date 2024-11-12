@@ -4,7 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Represents a player with a name and an associated fighter.
+ * Represents a player with a name and an associated list of fighters.
+ * Each player can have multiple fighters assigned.
  * 
  * @author Jan Wieland
  * @version 1.0
@@ -12,17 +13,14 @@ import java.util.List;
 public class Player {
     private String name;
     private List<Fighter> fighters = new ArrayList<>();
-    private Fighter fighter1;
-    private Fighter fighter2;
-    private Fighter fighter3;
 
     /**
      * Constructs a new player with the specified name.
      * 
-     * @param nameValue the name of the player
+     * @param name the name of the player
      */
-    public Player(String nameValue) {
-        name = nameValue;
+    public Player(String name) {
+        this.name = name;
     }
 
     /**
@@ -35,27 +33,27 @@ public class Player {
     }
 
     /**
-     * Sets the fighter associated with the player.
+     * Adds a fighter to the player's list of fighters.
      * 
-     * @param fighterValue the fighter to associate with the player
+     * @param fighter the fighter to associate with the player
      */
-    public void setFighter(Fighter fighterValue) {
-        fighters.add(fighterValue);
+    public void setFighter(Fighter fighter) {
+        fighters.add(fighter); // Add the specified fighter to the player's list
     }
 
     /**
-     * Remove the fighter associated with the player.
+     * Removes a fighter from the player's list of fighters.
      * 
-     * @param fighterValue the fighter to associate with the player
+     * @param fighter the fighter to remove from the player
      */
-    public void removeFighter(Fighter fighterValue) {
-        fighters.remove(fighterValue);
+    public void removeFighter(Fighter fighter) {
+        fighters.remove(fighter); // Remove the specified fighter from the list
     }
 
     /**
-     * Returns the fighter associated with the player.
+     * Returns the list of fighters associated with the player.
      * 
-     * @return the fighter associated with the player
+     * @return the list of fighters associated with the player
      */
     public List<Fighter> getFighters() {
         return fighters;

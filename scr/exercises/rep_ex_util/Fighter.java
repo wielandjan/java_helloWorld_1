@@ -16,20 +16,21 @@ public class Fighter {
     private Weapon weapon;
 
     /**
-     * Constructs a new fighter with the specified name, life points, defensive
-     * power, and weapon.
+     * Constructs a new fighter with the specified name, race, life points,
+     * defensive power, and weapon reach.
      * 
-     * @param nameValue   the name of the fighter
-     * @param lpValue     the life points of the fighter
-     * @param vwValue     the defensive power of the fighter
-     * @param weaponValue the weapon of the fighter
+     * @param name  the name of the fighter
+     * @param rasse the race of the fighter
+     * @param lp    the life points of the fighter
+     * @param vw    the defensive power of the fighter
+     * @param rw    the weapon reach of the fighter
      */
-    public Fighter(String nameValue, String rasseValue, int lpValue, int vwValue, int rwValue) {
-        name = nameValue;
-        rasse = rasseValue;
-        lp = lpValue;
-        vw = vwValue;
-        rw = rwValue;
+    public Fighter(String name, String rasse, int lp, int vw, int rw) {
+        this.name = name;
+        this.rasse = rasse;
+        this.lp = lp;
+        this.vw = vw;
+        this.rw = rw;
     }
 
     /**
@@ -42,9 +43,9 @@ public class Fighter {
     }
 
     /**
-     * Returns the rasse of the fighter.
+     * Returns the race of the fighter.
      * 
-     * @return the rasse of the fighter
+     * @return the race of the fighter
      */
     public String getRace() {
         return rasse;
@@ -62,10 +63,10 @@ public class Fighter {
     /**
      * Sets the life points of the fighter.
      * 
-     * @param lpValue the new life points of the fighter
+     * @param lp the new life points of the fighter
      */
-    public void setLp(int lpValue) {
-        lp = lpValue;
+    public void setLp(int lp) {
+        this.lp = lp;
     }
 
     /**
@@ -78,9 +79,9 @@ public class Fighter {
     }
 
     /**
-     * Returns the defensive power of the fighter.
+     * Returns the weapon reach of the fighter.
      * 
-     * @return the defensive power of the fighter
+     * @return the weapon reach of the fighter
      */
     public int getRw() {
         return rw;
@@ -98,10 +99,10 @@ public class Fighter {
     /**
      * Sets the weapon of the fighter.
      * 
-     * @return the weapon of the fighter
+     * @param weapon the new weapon for the fighter
      */
-    public void setWeapon(Weapon weaponValue) {
-        weapon = weaponValue;
+    public void setWeapon(Weapon weapon) {
+        this.weapon = weapon;
     }
 
 }

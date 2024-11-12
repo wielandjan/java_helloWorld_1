@@ -13,7 +13,6 @@ import exercises.rep_ex_util.Fighter;
 import exercises.rep_ex_util.Player;
 import exercises.rep_ex_util.Weapon;
 import exercises.rep_ex_util.WeaponTyp;
-import exercises.rep_ex_util.Dice;
 
 /**
  * Main class for the repetition exercise, simulating a simple turn-based combat
@@ -31,12 +30,18 @@ public class repetition_exercise {
 
         Player[] players = new Player[2];
 
+        // Initialize game setup and player creation
         initilizeGame(scanner, random, players);
 
+        // Execute the combat game sequence
         game(scanner, random, players);
 
     }
 
+    /**
+     * Initializes the game by setting up players and allowing each to select
+     * fighters.
+     */
     public static void initilizeGame(Scanner scanner, Random random, Player[] players) {
 
         System.out.println("Willkommen bei Kill Team!");
@@ -53,12 +58,10 @@ public class repetition_exercise {
         System.out.println("");
         System.out.println("Willkommen zur Kämpfer-Auswahl!");
 
-        // Jeder Spieler wählt 3 Kämpfer aus der Liste
-
+        // Each player selects 3 fighters from the available list
         int playerRandom = (random.nextInt(2));
 
         for (int i = 0; i < 3; i++) {
-
             switch (playerRandom) {
                 case 0:
                     System.out.println("");
@@ -86,10 +89,12 @@ public class repetition_exercise {
                 default:
                     break;
             }
-
         }
     }
 
+    /**
+     * Selects an initial fighter from the available list for a player.
+     */
     public static Fighter selectInitFighter(List<Fighter> availableFighters, Scanner scanner, Random random) {
         for (int i = 0; i < availableFighters.size(); i++) {
             Fighter fighter = availableFighters.get(i);
@@ -106,13 +111,16 @@ public class repetition_exercise {
             }
         }
 
-        // Entferne den gewählten Kämpfer aus der Liste der verfügbaren Kämpfer
+        // Removes the chosen fighter from the list of available fighters
         Fighter chosenFighter = availableFighters.remove(choice - 1);
         System.out.println("Du hast " + chosenFighter.getName() + " gewählt!");
 
         return chosenFighter;
     }
 
+    /**
+     * Main game loop to simulate combat between players.
+     */
     public static void game(Scanner scanner, Random random, Player[] players) {
 
         for (int i = 1; i > 0; i++) {
@@ -128,6 +136,7 @@ public class repetition_exercise {
             System.out.println("---------------------------------");
             System.out.printf("%s beginnt mit seinem Angriff!\n", players[playerRandom].getName());
 
+            // Process two rounds of attacks for each turn
             for (int j = 1; j < 3; j++) {
 
                 System.out.println("*----------------*");
@@ -156,11 +165,13 @@ public class repetition_exercise {
                     System.out.printf("%s hat gewonnen!\n", players[0].getName());
                     break;
                 }
-
             }
         }
     }
 
+    /**
+     * Simulates an attack sequence between an attacker and defender.
+     */
     public static void simulateAttack(Scanner scanner, Player attackPlayer, Fighter attacker, Player defendPlayer,
             Fighter defender) {
 
@@ -168,9 +179,11 @@ public class repetition_exercise {
         System.out.printf("%s greift mit %s (LP - %d) greift %s (LP - %d) von %s an!\n", attackPlayer.getName(),
                 attacker.getName(), attacker.getLp(), defender.getName(), defender.getLp(), defendPlayer.getName());
 
+        // Set attacker's weapon and defender's weapon for the combat
         attacker.setWeapon(selectAttackWeapon(scanner, attacker, attackPlayer));
         defender.setWeapon(setDefendWeapon(scanner, defender, attacker, defendPlayer));
 
+        // Simulate either a ranged or melee attack based on weapon type
         if (attacker.getWeapon().getTyp().equals(WeaponTyp.Fernkampfwaffe)) {
             simulateRangeAttack(attacker, defender);
             if (defender.getLp() <= 0) {
@@ -185,6 +198,9 @@ public class repetition_exercise {
         }
     }
 
+    /**
+     * Allows player to select a weapon for their fighter to use in an attack.
+     */
     public static Weapon selectAttackWeapon(Scanner scanner, Fighter fighter, Player player) {
         System.out.println("");
         System.out.printf("%s, wähle deine Waffe für %s :\n", player.getName(), fighter.getName());
@@ -193,8 +209,8 @@ public class repetition_exercise {
         List<Weapon> availableWeapons = DataFactory.createWeapons();
         List<Weapon> raceWeapons = new ArrayList<>();
 
+        // Filter weapons based on the fighter's race
         for (int i = 0; i < availableWeapons.size(); i++) {
-
             Weapon weapon = availableWeapons.get(i);
             if (weapon.getRace().equals(fighter.getRace())) {
                 raceWeapons.add(weapon);
@@ -221,9 +237,11 @@ public class repetition_exercise {
         System.out.println("Du hast " + chosenWeapon.getName() + " gewählt!");
 
         return chosenWeapon;
-
     }
 
+    /**
+     * Sets the defender's weapon to be used for defense in the attack.
+     */
     public static Weapon setDefendWeapon(Scanner scanner, Fighter fighter, Fighter opponend, Player player) {
         System.out.println("");
         System.out.printf("%s, wähle deine Waffe für %s :\n", player.getName(), fighter.getName());
@@ -233,8 +251,8 @@ public class repetition_exercise {
         List<Weapon> raceWeapons = new ArrayList<>();
         List<Weapon> typRaceWeapons = new ArrayList<>();
 
+        // Filter weapons based on fighter's race and type
         for (int i = 0; i < availableWeapons.size(); i++) {
-
             Weapon weapon = availableWeapons.get(i);
             if (weapon.getRace().equals(fighter.getRace())) {
                 raceWeapons.add(weapon);
@@ -242,7 +260,6 @@ public class repetition_exercise {
         }
 
         for (int i = 0; i < raceWeapons.size(); i++) {
-
             Weapon weapon = raceWeapons.get(i);
             if (weapon.getTyp().equals(opponend.getWeapon().getTyp())) {
                 typRaceWeapons.add(weapon);
@@ -269,9 +286,11 @@ public class repetition_exercise {
         System.out.println("Du hast " + chosenWeapon.getName() + " gewählt!");
 
         return chosenWeapon;
-
     }
 
+    /**
+     * Allows player to select a fighter from their available fighters.
+     */
     public static Fighter selectFighter(Scanner scanner, Player player) {
         System.out.println("");
         System.out.printf("%s, wähle deinen Kämpfer:\n", player.getName());
@@ -296,9 +315,11 @@ public class repetition_exercise {
         System.out.println("Du hast " + chosenFighter.getName() + " gewählt!");
 
         return chosenFighter;
-
     }
 
+    /**
+     * Simulates a ranged attack and calculates resulting damage.
+     */
     public static void simulateRangeAttack(Fighter attacker, Fighter defender) {
         System.out.println("");
         System.out.printf("%s und %s haben gewürfelt:\n", attacker.getName(), defender.getName());
@@ -309,33 +330,33 @@ public class repetition_exercise {
         List<Integer> defendDices = new ArrayList<>();
         List<CombatActionTyp> defendTyps = new ArrayList<>();
 
+        // Roll dice for attacker and defender based on their respective stats
         attackDices = Dice.wuerfeln(attacker.getWeapon().getAw());
         defendDices = Dice.wuerfeln(defender.getVw());
 
+        // Determine outcome of each attack roll
         for (int i = 0; i < attackDices.size(); i++) {
-
             if (attackDices.get(i) < attacker.getWeapon().getBF_KG()) {
                 attackTyps.add(CombatActionTyp.verfehlt);
             } else if (attackDices.get(i) >= attacker.getWeapon().getBF_KG()) {
                 attackTyps.add(CombatActionTyp.Treffer);
             } else if (attackDices.get(i) == 6) {
                 attackTyps.add(CombatActionTyp.Kritischer_Treffer);
-
             }
         }
 
+        // Determine outcome of each defense roll
         for (int i = 0; i < defendDices.size(); i++) {
-
             if (defendDices.get(i) < defender.getWeapon().getBF_KG()) {
                 defendTyps.add(CombatActionTyp.verfehlt);
             } else if (defendDices.get(i) >= defender.getWeapon().getBF_KG()) {
                 defendTyps.add(CombatActionTyp.Block);
             } else if (defendDices.get(i) == 6) {
                 defendTyps.add(CombatActionTyp.Kritischer_Block);
-
             }
         }
 
+        // Normalize the length of attack and defense types lists
         while (attackTyps.size() > defendTyps.size()) {
             defendTyps.add(CombatActionTyp.none);
         }
@@ -344,32 +365,26 @@ public class repetition_exercise {
             attackTyps.add(CombatActionTyp.none);
         }
 
+        // Calculate damage for each attack-defense pair
         List<Integer> damages = new ArrayList<>();
-
         for (int i = 0; i < attackTyps.size() || i < defendTyps.size(); i++) {
-
             if ((attackTyps.get(i) == CombatActionTyp.verfehlt || attackTyps.get(i) == CombatActionTyp.none)
                     && ((defendTyps.get(i) == CombatActionTyp.verfehlt || defendTyps.get(i) == CombatActionTyp.none)
                             || defendTyps.get(i) == CombatActionTyp.Block
                             || defendTyps.get(i) == CombatActionTyp.Kritischer_Block)) {
                 damages.add(0);
-
             } else if (attackTyps.get(i) == CombatActionTyp.Treffer
                     && (defendTyps.get(i) == CombatActionTyp.verfehlt || defendTyps.get(i) == CombatActionTyp.none)) {
                 damages.add(attacker.getWeapon().getSw() - defender.getRw());
-
             } else if (attackTyps.get(i) == CombatActionTyp.Treffer && defendTyps.get(i) == CombatActionTyp.Block) {
                 damages.add(0);
-
             } else if (attackTyps.get(i) == CombatActionTyp.Treffer
                     && defendTyps.get(i) == CombatActionTyp.Kritischer_Block) {
                 damages.add(0);
-
             } else if (attackTyps.get(i) == CombatActionTyp.Kritischer_Treffer
                     && ((defendTyps.get(i) == CombatActionTyp.verfehlt || defendTyps.get(i) == CombatActionTyp.none)
                             || defendTyps.get(i) == CombatActionTyp.Block)) {
                 damages.add(attacker.getWeapon().getKs() - defender.getRw());
-
             } else if (attackTyps.get(i) == CombatActionTyp.Kritischer_Treffer
                     && defendTyps.get(i) == CombatActionTyp.Kritischer_Block) {
                 damages.add(0);
@@ -379,6 +394,7 @@ public class repetition_exercise {
             defender.setLp(defender.getLp() - damages.get(i));
         }
 
+        // Print combat results
         System.out.println("");
         System.out.printf(" %15S |", attacker.getName());
         for (int i = 0; i < attackTyps.size(); i++) {
@@ -409,9 +425,11 @@ public class repetition_exercise {
         } else {
             System.out.printf("%s ist getötet worden!", defender.getName());
         }
-
     }
 
+    /**
+     * Simulates a melee attack and calculates resulting damage.
+     */
     public static void simulateMeleeAttack(Scanner scanner, Fighter attacker, Fighter defender, Player attackPlayer,
             Player defendPlayer) {
         System.out.println("");
@@ -423,33 +441,31 @@ public class repetition_exercise {
         List<Integer> defendDices = new ArrayList<>();
         List<CombatActionTyp> defendTyps = new ArrayList<>();
 
+        // Roll dice for melee attack and defense
         attackDices = Dice.wuerfeln(attacker.getWeapon().getAw());
         defendDices = Dice.wuerfeln(defender.getVw());
 
         for (int i = 0; i < attackDices.size(); i++) {
-
             if (attackDices.get(i) < attacker.getWeapon().getBF_KG()) {
                 attackTyps.add(CombatActionTyp.verfehlt);
             } else if (attackDices.get(i) >= attacker.getWeapon().getBF_KG()) {
                 attackTyps.add(CombatActionTyp.Treffer);
             } else if (attackDices.get(i) == 6) {
                 attackTyps.add(CombatActionTyp.Kritischer_Treffer);
-
             }
         }
 
         for (int i = 0; i < defendDices.size(); i++) {
-
             if (defendDices.get(i) < defender.getWeapon().getBF_KG()) {
                 defendTyps.add(CombatActionTyp.verfehlt);
             } else if (defendDices.get(i) >= defender.getWeapon().getBF_KG()) {
                 defendTyps.add(CombatActionTyp.Block);
             } else if (defendDices.get(i) == 6) {
                 defendTyps.add(CombatActionTyp.Kritischer_Block);
-
             }
         }
 
+        // Align the sizes of attack and defense action lists
         while (attackTyps.size() > defendTyps.size()) {
             defendTyps.add(CombatActionTyp.none);
         }
@@ -497,9 +513,11 @@ public class repetition_exercise {
                 break;
             }
         }
-
     }
 
+    /**
+     * Allows player to select a combat action from the available list.
+     */
     public static CombatActionTyp selectCombatActions(Scanner scanner, List<CombatActionTyp> availableActions) {
         for (int i = 0; i < availableActions.size(); i++) {
             System.out.println((i + 1) + ". " + availableActions.get(i).name());
@@ -520,6 +538,10 @@ public class repetition_exercise {
         return chosenAction;
     }
 
+    /**
+     * Calculates damage based on the combat action types of the attacker and
+     * defender.
+     */
     public static int calcDamage(CombatActionTyp attackTyp, CombatActionTyp defendTyp, Fighter attacker,
             Fighter defender) {
 
@@ -551,7 +573,6 @@ public class repetition_exercise {
         }
 
         return 0;
-
     }
 
 }
