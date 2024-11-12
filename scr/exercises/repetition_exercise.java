@@ -129,19 +129,6 @@ public class repetition_exercise {
             System.out.printf("%s beginnt mit seinem Angriff!\n", players[playerRandom].getName());
 
             for (int j = 1; j < 3; j++) {
-                if (players[0].getFighters().isEmpty()) {
-                    System.out.println("---------------------------------");
-                    System.out.printf("%s hat keine lebenden Kämpfer mehr!\n", players[0].getName());
-                    System.out.printf("%s hat gewonnen!\n", players[1].getName());
-                    break;
-                }
-
-                if (players[1].getFighters().isEmpty()) {
-                    System.out.println("---------------------------------");
-                    System.out.printf("%s hat keine lebenden Kämpfer mehr!\n", players[1].getName());
-                    System.out.printf("%s hat gewonnen!\n", players[0].getName());
-                    break;
-                }
 
                 System.out.println("*----------------*");
                 System.out.printf("* Runde %d, Zug %d *\n", i, j);
@@ -154,6 +141,20 @@ public class repetition_exercise {
                 } else {
                     simulateAttack(scanner, players[opponentRandom], selectFighter(scanner, players[opponentRandom]),
                             players[playerRandom], selectFighter(scanner, players[playerRandom]));
+                }
+
+                if (players[0].getFighters().isEmpty()) {
+                    System.out.println("---------------------------------");
+                    System.out.printf("%s hat keine lebenden Kämpfer mehr!\n", players[0].getName());
+                    System.out.printf("%s hat gewonnen!\n", players[1].getName());
+                    break;
+                }
+
+                if (players[1].getFighters().isEmpty()) {
+                    System.out.println("---------------------------------");
+                    System.out.printf("%s hat keine lebenden Kämpfer mehr!\n", players[1].getName());
+                    System.out.printf("%s hat gewonnen!\n", players[0].getName());
+                    break;
                 }
 
             }
@@ -355,7 +356,7 @@ public class repetition_exercise {
 
             } else if (attackTyps.get(i) == CombatActionTyp.Treffer
                     && (defendTyps.get(i) == CombatActionTyp.verfehlt || defendTyps.get(i) == CombatActionTyp.none)) {
-                damages.add(defender.getVw() - attacker.getWeapon().getSw());
+                damages.add(attacker.getWeapon().getSw() - defender.getRw());
 
             } else if (attackTyps.get(i) == CombatActionTyp.Treffer && defendTyps.get(i) == CombatActionTyp.Block) {
                 damages.add(0);
@@ -367,7 +368,7 @@ public class repetition_exercise {
             } else if (attackTyps.get(i) == CombatActionTyp.Kritischer_Treffer
                     && ((defendTyps.get(i) == CombatActionTyp.verfehlt || defendTyps.get(i) == CombatActionTyp.none)
                             || defendTyps.get(i) == CombatActionTyp.Block)) {
-                damages.add(defender.getVw() - attacker.getWeapon().getKs());
+                damages.add(attacker.getWeapon().getKs() - defender.getRw());
 
             } else if (attackTyps.get(i) == CombatActionTyp.Kritischer_Treffer
                     && defendTyps.get(i) == CombatActionTyp.Kritischer_Block) {
@@ -530,7 +531,7 @@ public class repetition_exercise {
 
         } else if (attackTyp == CombatActionTyp.Treffer
                 && (defendTyp == CombatActionTyp.verfehlt || defendTyp == CombatActionTyp.none)) {
-            return defender.getRw() - attacker.getWeapon().getSw();
+            return attacker.getWeapon().getSw() - defender.getRw();
 
         } else if (attackTyp == CombatActionTyp.Treffer && defendTyp == CombatActionTyp.Block) {
             return 0;
@@ -542,7 +543,7 @@ public class repetition_exercise {
         } else if (attackTyp == CombatActionTyp.Kritischer_Treffer
                 && ((defendTyp == CombatActionTyp.verfehlt || defendTyp == CombatActionTyp.none)
                         || defendTyp == CombatActionTyp.Block)) {
-            return defender.getRw() - attacker.getWeapon().getKs();
+            return attacker.getWeapon().getKs() - defender.getRw();
 
         } else if (attackTyp == CombatActionTyp.Kritischer_Treffer
                 && defendTyp == CombatActionTyp.Kritischer_Block) {
