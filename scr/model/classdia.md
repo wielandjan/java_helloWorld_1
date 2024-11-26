@@ -15,7 +15,7 @@ classDiagram
         +switchOff()
         +switchOn()
         +getNumberOfDices() int
-        -DESCRIPTION : String // static, final
+        -DESCRIPTION : String #123;final#125;
         -numberOfDices : int // static
         -isConnected : boolean
         -isOn : boolean
