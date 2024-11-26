@@ -9,9 +9,9 @@ public class ExamTask03 {
     public static void main(String[] args) {
 
         Random myRandom = new Random();
-        data = new int[1_000_001];
+        data = new int[1_000_000];
 
-        for (int i = 0; i < 1_000_000; i++) {
+        for (int i = 0; i < data.length; i++) {
             data[i] = myRandom.nextInt(100) + 1;
 
         }
