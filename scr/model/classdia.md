@@ -15,11 +15,11 @@ classDiagram
         +switchOff()
         +switchOn()
         +getNumberOfDices() int
-        -String DESCRIPTION
-        -int numberOfDices
-        -boolean isConnected
-        -boolean isOn
-        -PlugType plugType
-        -LightBulb lightBulb
+        -DESCRIPTION : String // static, final
+        -numberOfDices : int // static
+        -isConnected : boolean
+        -isOn : boolean
+        -plugType : PlugType // final
+        -lightBulb : LightBulb
     }
 ```
