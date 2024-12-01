@@ -10,21 +10,45 @@
 
 ---
 
-## Aufgabe 1 (25 Punkte)
+# Aufgabe 1 (40 Punkte)
 
-- Erstelle die Klasse `DateManager` anhand des abgebildeten Klassendiagramms. Dabei sollen folgende Methoden implementiert werden:
-  - Gibt das aktuelle Datum als `LocalDate` zurück.
-  - Gibt die aktuelle Uhrzeit als `LocalTime` zurück.
-  - Berechnet die Anzahl der Millisekundn zwischen `birthday` und now().
-    (LocalDate.atStartOfDay(ZoneId.systemDefault()) - Konvertiert das Datum zu einem LocalDateTime um Mitternacht und verwendet die aktuelle Zeitzone. Wobei LocalDate dem Typ LocalDate entsprechne muss)
-  - Gibt den Wochentag für ein angegebenes Datum zurück. (20 Punkte)
-- Implementiere die ausführbare Klasse `ExamTask01` (5 Punkte). Diese soll:
-  - Das aktuelle Datum und die aktuelle Uhrzeit auf der Konsole ausgeben.
-  - Den Benutzer auffordern, ein Datum im Format `yyyy-MM-dd` einzugeben.
-  - Den Wochentag des eingegebenen Datums berechnen und anzeigen.
-  - Die Differenz in Tagen zwischen dem aktuellen Datum und dem eingegebenen Datum berechnen und anzeigen.
+Implementiere die Klasse `DateManager` und die zugehörigen Methoden gemäß des abgebildeten Klassendiagramms. Insgesamt sind für diese Aufgabe **40 Punkte** zu vergeben, die wie folgt verteilt werden:
 
-### Klassendiagramm
+## 1.1 Implementierung der Klasse `DateManager` (25 Punkte)
+
+1. **Methode `getCurrentDate()` (5 Punkte)**
+
+   - **(5 Punkte)**: Implementiere die Methode `getCurrentDate()`, welche das aktuelle Datum als `LocalDate` zurückgibt.
+
+2. **Methode `getCurrentTime()` (5 Punkte)**
+
+   - **(5 Punkte)**: Implementiere die Methode `getCurrentTime()`, welche die aktuelle Uhrzeit als `LocalTime` zurückgibt.
+
+3. **Methode `calculateDaysBetween(LocalDate birthday)` (10 Punkte)**
+
+   - **(10 Punkte)**: Implementiere die Methode `calculateDaysBetween(birthday: LocalDate)`, welche die Anzahl der Millisekunden zwischen dem übergebenen `birthday` und der aktuellen Zeit (`now()`) berechnet. Nutze dabei `LocalDate.atStartOfDay(ZoneId.systemDefault())`, um das Datum zu einem `LocalDateTime` um Mitternacht zu konvertieren und die aktuelle Zeitzone zu verwenden.
+
+4. **Methode `getWeekDay(LocalDate date)` (5 Punkte)**
+   - **(5 Punkte)**: Implementiere die Methode `getWeekDay(date: LocalDate)`, welche den Wochentag für ein angegebenes Datum zurückgibt.
+
+## 1.2 Implementierung der ausführbaren Klasse `ExamTask01` (15 Punkte)
+
+1. **Aktuelles Datum und aktuelle Uhrzeit ausgeben (1 Punkt)**
+
+   - **(1 Punkt)**: Implementiere die Ausgabe des aktuellen Datums und der aktuellen Uhrzeit auf der Konsole.
+
+2. **Benutzeraufforderung zur Eingabe eines Datums (4 Punkte)**
+
+   - **(4 Punkte)**: Fordere den Benutzer auf, ein Datum im Format `yyyy-MM-dd` einzugeben.
+
+3. **Wochentag des eingegebenen Datums berechnen und anzeigen (3 Punkte)**
+
+   - **(3 Punkte)**: Berechne den Wochentag des vom Benutzer eingegebenen Datums und zeige diesen auf der Konsole an.
+
+4. **Differenz in Tagen zwischen aktuellem Datum und eingegebenem Datum berechnen und anzeigen (8 Punkte)**
+   - **(8 Punkte)**: Berechne die Differenz in Tagen zwischen dem aktuellen Datum und dem eingegebenen Datum und zeige diese Differenz auf der Konsole an.
+
+## Klassendiagramm
 
 ```mermaid
 classDiagram
@@ -48,15 +72,34 @@ Sie sind ca. 708618917429 ms alt.
 
 ---
 
-## Aufgabe 2 (25 Punkte)
+# Aufgabe 2 (30 Punkte)
 
-- Implementiere die Klasse `DataProcessor` anhand des abgebildeten Klassendiagramms. Dabei sollen folgende Methoden umgesetzt werden:
-  - `addPerson(person: Person)`: fügt `people` ein `Person`-Objekt an.
-  - `findPersonByName(name: String)`: Sucht nach einer Person mit dem Namen in `people` und gibt das entsprechende `Person`-Objekt zurück. (15 Punkte)
-- Erstelle die ausführbare Klasse `ExamTask02` (10 Punkte), die:
-  - Eine Datei `data.txt` mit Personendaten (Name, Alter, Beruf) einliest.
-  - Den Benutzer auffordert, nach einem Namen zu suchen.
-  - Die zugehörigen Informationen zur eingegebenen Person auf der Konsole ausgibt mit toString().
+Implementiere die Klasse `DataProcessor` und die zugehörigen Methoden gemäß des abgebildeten Klassendiagramms. Implementiere auch die Klasse `Person`, die zur Verwaltung der Personendaten dient. Insgesamt sind für diese Aufgabe **30 Punkte** zu vergeben, die wie folgt verteilt werden:
+
+## 2.1 Implementierung der Klasse `DataProcessor` (15 Punkte)
+
+1. **Konstruktor und Datenstruktur (5 Punkte)**
+
+   - Erstelle den Konstruktor `DataProcessor()` und initialisiere die interne Liste `people` zur Speicherung von `Person`-Objekten.
+   - Die Klasse `DataProcessor` muss eine Datenstruktur zur Verwaltung der `Person`-Objekte enthalten.
+
+2. **Methode `addPerson(Person person)` (5 Punkte)**
+
+   - **(5 Punkte)**: Implementiere die Methode `addPerson(person: Person)`, welche das übergebene `Person`-Objekt der Liste `people` hinzufügt.
+
+3. **Methode `findPersonByName(String name)` (5 Punkte)**
+   - **(5 Punkte)**: Implementiere die Methode `findPersonByName(name: String)`, welche nach einer Person anhand des Namens in der Liste `people` sucht und das entsprechende `Person`-Objekt zurückgibt. Wenn keine Person gefunden wird, soll `null` zurückgegeben werden.
+
+## 2.2 Implementierung der ausführbaren Klasse `ExamTask02` (15 Punkte)
+
+1. **Einlesen von Personendaten aus Datei (7 Punkte)**
+
+   - **(4 Punkte)**: Implementiere das Einlesen der Datei `data.txt` und erstelle daraus `Person`-Objekte, die der Liste `people` im `DataProcessor` hinzugefügt werden.
+   - **(3 Punkte)**: Verarbeite die Daten im Format `name;age;profession` und achte darauf, die Daten korrekt in die Attribute der Klasse `Person` zu übertragen.
+
+2. **Benutzereingabe und Suche nach einer Person (8 Punkte)**
+   - **(4 Punkte)**: Implementiere eine Benutzereingabe, die nach einem Namen fragt.
+   - **(4 Punkte)**: Suche die entsprechende Person mithilfe der Methode `findPersonByName(name: String)` und gebe die Informationen der Person auf der Konsole mit der Methode `toString()` aus. Wenn keine Person gefunden wird, soll eine entsprechende Nachricht angezeigt werden.
 
 ### Klassendiagramm
 
@@ -98,10 +141,34 @@ Ergebnis: [[name=Lisa],[age=25],[profession=Designer]]
 
 ---
 
-## Aufgabe 3 (30 Punkte)
+# Aufgabe 3 (30 Punkte)
 
-- Implementiere eine Enumeration `Product` (10 Punkte), die eine Liste der verfügbaren Produkte enthält. Es sollen folgende Produkte verfügbar sein: `LAPTOP`, `SMARTPHONE`, `TABLET`. Die Enumeration enthält eine Methode `isAvailable(String productName)`, die prüft, ob ein Produkt verfügbar ist.
-- Erstelle die ausführbare Klasse `ExamTask03` als gemäß dem abgebildeten Aktivitätsdiagramm (20 Punkte). Dabei sollen die Schritte des Bestellprozesses (Eingabe, Verfügbarkeit, Bestätigung, Bezahlung, Rechnungserstellung, Versand) wie im Diagramm beschrieben implementiert werden.
+Implementiere die Enumeration `Product` und die zugehörigen Methoden gemäß des abgebildeten Klassendiagramms. Implementiere auch die ausführbare Klasse `ExamTask03`, die den Bestellprozess gemäß des angegebenen Aktivitätsdiagramms umsetzt. Insgesamt sind für diese Aufgabe **30 Punkte** zu vergeben, die wie folgt verteilt werden:
+
+## 3.1 Implementierung der Enumeration `Product` (10 Punkte)
+
+1. **Verfügbare Produkte definieren (3 Punkte)**
+
+   - **(3 Punkte)**: Definiere die Produkte `LAPTOP`, `SMARTPHONE` und `TABLET` in der Enumeration `Product`, wobei jedes Produkt einen Preis besitzt.
+
+2. **Konstruktor und Attribut `price` (3 Punkte)**
+
+   - **(3 Punkte)**: Implementiere den Konstruktor der Enumeration `Product`, welcher das Attribut `price` initialisiert.
+
+3. **Methode `isAvailable(String productName)` (2 Punkte)**
+
+   - **(2 Punkte)**: Implementiere die Methode `isAvailable(productName: String)`, welche überprüft, ob das angegebene Produkt verfügbar ist.
+
+4. **Methode `getPrice()` (2 Punkte)**
+   - **(2 Punkte)**: Implementiere die Methode `getPrice()`, welche den Preis des Produkts zurückgibt.
+
+## 3.2 Implementierung der ausführbaren Klasse `ExamTask03` (20 Punkte)
+
+1. **Benutzereingabe zur Produktauswahl (4 Punkte)**
+2. **Verfügbarkeit prüfen (4 Punkte)**
+3. **Kaufpreis anzeigen (3 Punkte)**
+4. **Kaufabfrage und Prozessfortführung (5 Punkte)**
+5. **Bestellprozess abschließen oder wiederholen (4 Punkte)**
 
 ### Aktivitätsdiagramm
 
@@ -145,6 +212,9 @@ classDiagram
         LAPTOP(999.75)
         SMARTPHONE(499.99)
         TABLET(745.45)
+
+        -price double #123;final#125;
+        Product(price: double)
         +isAvailable(productName: String) Product #123;static#125;
         +getPrice() double
     }
@@ -156,7 +226,7 @@ classDiagram
 Produkt suchen: LAPTOP
 Verfügbarkeit prüfen...
 Produkt ist verfügbar. || Produkt ist nicht verfügbar.
-Der Kaufpreis ist: 999.75€
+Der Kaufpreis ist: 999.75$
 Möchte sie das Produkt kaufen Ja= [true] Nein =[false]? true || false
 Bezahlung ... || Abbruch ...
 Vorgang abgeschlossen. || Vorgang abgebrochen.
@@ -165,53 +235,6 @@ Verlassen ...
 ```
 
 ---
-
-## Aufgabe 4 (20 Punkte)
-
-- Implementiere die Klassen `WeatherStation`, `Sensor`, und `WeatherData` gemäß dem abgebildeten Klassendiagramm. Dabei sollen folgende Methoden umgesetzt werden:
-  - `WeatherStation`: Verwaltet eine Liste von Sensoren, ermöglicht das Hinzufügen von Sensoren und sammelt die Wetterdaten von allen Sensoren.
-  - `Sensor`: Repräsentiert einen Sensor (z. B. Temperatur, Luftfeuchtigkeit) und misst Wetterdaten.
-  - `WeatherData`: Enthält die gemessenen Wetterinformationen (Temperatur und Luftfeuchtigkeit). (15 Punkte)
-- Erstelle eine ausführbare Klasse `WeatherApp` (5 Punkte), die:
-  - Mehrere Sensoren zur Wetterstation hinzufügt.
-  - Die gemessenen Wetterdaten auf der Konsole ausgibt.
-
-### Klassendiagramm
-
-```mermaid
-classDiagram
-    class WeatherStation {
-        -sensors List~Sensor~ #123;final#125;
-        +WeatherStation()
-        +addSensor(sensor: Sensor) void
-        +collectData() List~WeatherData~
-    }
-
-    class Sensor {
-        -type String #123;final#125;
-        +Sensor(type: String)
-        +measure() WeatherData
-    }
-
-    class WeatherData {
-        -temperature double
-        -humidity double
-        +WeatherData(temperature: double, humidity: double)
-        +toString() String
-    }
-
-    WeatherStation --> Sensor
-    Sensor --> WeatherData
-```
-
-## Beispielhafte Konsolenausgabe
-
-```plaintext
-Sensor hinzugefügt: Temperatur
-Sensor hinzugefügt: Luftfeuchtigkeit
-Gemessene Wetterdaten:
-Temperatur: 22.5°C, Luftfeuchtigkeit: 60%
-```
 
 ---
 
