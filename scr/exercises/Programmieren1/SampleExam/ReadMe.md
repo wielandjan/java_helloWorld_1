@@ -238,47 +238,42 @@ Verlassen ...
 
 ---
 
-## Hinweisse
+```markdown
+# Hinweise
 
-```plaintext
-DayOfWeek java.time.LocalDate.getDayOfWeek()
-Gets the day-of-week field, which is an enum DayOfWeek.
+## 1. `LocalDate.getDayOfWeek()`
 
-This method returns the enum DayOfWeek for the day-of-week. This avoids confusion as to what int values mean. If you need access to the primitive int value then the enum provides the int value.
-```
+- **Rückgabetyp:** `DayOfWeek`
+- **Beschreibung:** Gibt das Wochentagsfeld als `DayOfWeek`-Enum zurück.
+  - Das vermeidet Verwirrung darüber, was `int`-Werte bedeuten.
+  - Der `DayOfWeek`-Enum kann auch den `int`-Wert des Tages liefern.
 
-```plaintext
-String java.lang.Enum.toString()
-Returns the name of this enum constant, as contained in the declaration. This method may be overridden, though it typically isn't necessary or desirable. An enum class should override this method when a more "programmer-friendly" string form exists.
+## 2. `Enum.toString()`
 
-Overrides: toString() in Object
+- **Rückgabetyp:** `String`
+- **Beschreibung:** Gibt den Namen der Enum-Konstante als Zeichenkette zurück, wie sie in der Deklaration enthalten ist.
+  - Kann überschrieben werden, wird aber in der Regel nicht benötigt.
+  - Sollte nur überschrieben werden, wenn eine "entwicklerfreundlichere" Zeichenkettendarstellung gebraucht wird.
 
-Returns:
+## 3. Konvertierung eines `LocalDate` in einen Unix-Timestamp
 
-the name of this enum constant
-```
+- **Schritte:**
+  1. **`LocalDate.atStartOfDay(ZoneId.systemDefault())`**:
+     - Konvertiert das Datum zu einem `LocalDateTime` um Mitternacht und verwendet die aktuelle Zeitzone.
+  2. **`.toInstant()`**:
+     - Wandelt es in ein `Instant` um.
+  3. **`.toEpochMilli()`**:
+     - Konvertiert den Zeitpunkt in Millisekunden seit der Epoche (Unix-Zeitstempel).
 
-```plaintext
-LocalDate.atStartOfDay(ZoneId.systemDefault()) - Konvertiert das Datum zu einem LocalDateTime um Mitternacht und verwendet die aktuelle Zeitzone.
-.toInstant() - Wandelt es in ein Instant um.
-.toEpochMilli() - Konvertiert den Zeitpunkt in Millisekunden seit der Epoche (Unix-Zeitstempel).
-```
+## 4. `Enum.values()`
 
-```plaintext
-String java.lang.Enum.value()
-Returns the values as array of this enum constants, exactly as declared in its enum declaration.
+- **Rückgabetyp:** `Enum[]` (Array von Enum-Konstanten)
+- **Beschreibung:** Gibt alle Enum-Konstanten als Array zurück, genau wie sie in der Enum-Deklaration angegeben sind.
 
-Returns:
+## 5. `Enum.name()`
 
-the the values as arry of this enum constants
-
-```
-
-```plaintext
-String java.lang.Enum.name()
-Returns the name of this enum constant, exactly as declared in its enum declaration. Most programmers should use the toString method in preference to this one, as the toString method may return a more user-friendly name. This method is designed primarily for use in specialized situations where correctness depends on getting the exact name, which will not vary from release to release.
-
-Returns:
-
-the name of this enum constant
+- **Rückgabetyp:** `String`
+- **Beschreibung:** Gibt den Namen der Enum-Konstante genau wie in der Deklaration zurück.
+  - **Hinweis:** Die meisten Entwickler sollten die `toString()`-Methode bevorzugen, da diese eine benutzerfreundlichere Darstellung bietet.
+  - **Nutzung:** Wird hauptsächlich in speziellen Situationen verwendet, in denen die genaue Übereinstimmung des Namens wichtig ist (wird sich nicht zwischen Versionen ändern).
 ```
