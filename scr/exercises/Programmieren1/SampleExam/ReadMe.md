@@ -238,7 +238,6 @@ Verlassen ...
 
 ---
 
-```markdown
 # Hinweise
 
 ## 1. `LocalDate.getDayOfWeek()`
@@ -276,4 +275,3 @@ Verlassen ...
 - **Beschreibung:** Gibt den Namen der Enum-Konstante genau wie in der Deklaration zurück.
   - **Hinweis:** Die meisten Entwickler sollten die `toString()`-Methode bevorzugen, da diese eine benutzerfreundlichere Darstellung bietet.
   - **Nutzung:** Wird hauptsächlich in speziellen Situationen verwendet, in denen die genaue Übereinstimmung des Namens wichtig ist (wird sich nicht zwischen Versionen ändern).
-```
