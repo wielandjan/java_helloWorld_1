@@ -18,32 +18,32 @@ Implementiere die Klasse `DateManager` und die zugehörigen Methoden gemäß des
 
 1. **Methode `getCurrentDate()` (5 Punkte)**
 
-   - (5 Punkte): Implementiere die Methode `getCurrentDate()`, welche das aktuelle Datum als `LocalDate` zurückgibt.
+   - Implementiere die Methode `getCurrentDate()`, welche das aktuelle Datum als `LocalDate` zurückgibt.
 
 2. **Methode `getCurrentTime()` (5 Punkte)**
 
-   - (5 Punkte): Implementiere die Methode `getCurrentTime()`, welche die aktuelle Uhrzeit als `LocalTime` zurückgibt.
+   - Implementiere die Methode `getCurrentTime()`, welche die aktuelle Uhrzeit als `LocalTime` zurückgibt.
 
 3. **Methode `calculateDaysBetween(LocalDate birthday)` (10 Punkte)**
 
-   - (10 Punkte): Implementiere die Methode `calculateDaysBetween(birthday: LocalDate)`, welche die Anzahl der Millisekunden zwischen dem übergebenen `birthday` und der aktuellen Zeit (`now()`) berechnet. Nutze dabei `LocalDate.atStartOfDay(ZoneId.systemDefault())`, um das Datum zu einem `LocalDateTime` um Mitternacht zu konvertieren und die aktuelle Zeitzone zu verwenden.
+   - Implementiere die Methode `calculateDaysBetween(birthday: LocalDate)`, welche die Anzahl der Millisekunden zwischen dem übergebenen `birthday` und der aktuellen Zeit (`now()`) berechnet. Nutze dabei `LocalDate.atStartOfDay(ZoneId.systemDefault())`, um das Datum zu einem `LocalDateTime` um Mitternacht zu konvertieren und die aktuelle Zeitzone zu verwenden.
 
 4. **Methode `getWeekDay(LocalDate date)` (5 Punkte)**
-   - (5 Punkte): Implementiere die Methode `getWeekDay(date: LocalDate)`, welche den Wochentag für ein angegebenes Datum zurückgibt.
+   - Implementiere die Methode `getWeekDay(date: LocalDate)`, welche den Wochentag für ein angegebenes Datum zurückgibt.
 
 ## 1.2 Implementierung der ausführbaren Klasse `ExamTask01` (15 Punkte)
 
 1. **Aktuelles Datum und aktuelle Uhrzeit ausgeben (1 Punkt)**
 
-   - (1 Punkt): Implementiere die Ausgabe des aktuellen Datums und der aktuellen Uhrzeit auf der Konsole.
+   - Implementiere die Ausgabe des aktuellen Datums und der aktuellen Uhrzeit auf der Konsole.
 
 2. **Benutzeraufforderung zur Eingabe eines Datums (4 Punkte)**
 
-   - (4 Punkte): Fordere den Benutzer auf, ein Datum im Format `yyyy-MM-dd` einzugeben.
+   - Fordere den Benutzer auf, ein Datum im Format `yyyy-MM-dd` einzugeben.
 
 3. **Wochentag des eingegebenen Datums berechnen und anzeigen (3 Punkte)**
 
-   - (3 Punkte): Berechne den Wochentag des vom Benutzer eingegebenen Datums und zeige diesen auf der Konsole an.
+   - Berechne den Wochentag des vom Benutzer eingegebenen Datums und zeige diesen auf der Konsole an.
 
 4. **Differenz in Tagen zwischen aktuellem Datum und eingegebenem Datum berechnen und anzeigen (8 Punkte)**
    - (8 Punkte): Berechne die Differenz in Tagen zwischen dem aktuellen Datum und dem eingegebenen Datum und zeige diese Differenz auf der Konsole an.
@@ -85,21 +85,21 @@ Implementiere die Klasse `DataProcessor` und die zugehörigen Methoden gemäß d
 
 2. **Methode `addPerson(Person person)` (5 Punkte)**
 
-   - (5 Punkte): Implementiere die Methode `addPerson(person: Person)`, welche das übergebene `Person`-Objekt der Liste `people` hinzufügt.
+   - Implementiere die Methode `addPerson(person: Person)`, welche das übergebene `Person`-Objekt der Liste `people` hinzufügt.
 
 3. **Methode `findPersonByName(String name)` (5 Punkte)**
-   - (5 Punkte): Implementiere die Methode `findPersonByName(name: String)`, welche nach einer Person anhand des Namens in der Liste `people` sucht und das entsprechende `Person`-Objekt zurückgibt. Wenn keine Person gefunden wird, soll `null` zurückgegeben werden.
+   - Implementiere die Methode `findPersonByName(name: String)`, welche nach einer Person anhand des Namens in der Liste `people` sucht und das entsprechende `Person`-Objekt zurückgibt. Wenn keine Person gefunden wird, soll `null` zurückgegeben werden.
 
 ## 2.2 Implementierung der ausführbaren Klasse `ExamTask02` (15 Punkte)
 
 1. **Einlesen von Personendaten aus Datei (7 Punkte)**
 
-   - (4 Punkte): Implementiere das Einlesen der Datei `data.txt` und erstelle daraus `Person`-Objekte, die der Liste `people` im `DataProcessor` hinzugefügt werden.
-   - (3 Punkte): Verarbeite die Daten im Format `name;age;profession` und achte darauf, die Daten korrekt in die Attribute der Klasse `Person` zu übertragen.
+   - Implementiere das Einlesen der Datei `data.txt` und erstelle daraus `Person`-Objekte, die der Liste `people` im `DataProcessor` hinzugefügt werden.
+   - Verarbeite die Daten im Format `name;age;profession` und achte darauf, die Daten korrekt in die Attribute der Klasse `Person` zu übertragen.
 
 2. **Benutzereingabe und Suche nach einer Person (8 Punkte)**
-   - (4 Punkte): Implementiere eine Benutzereingabe, die nach einem Namen fragt.
-   - (4 Punkte): Suche die entsprechende Person mithilfe der Methode `findPersonByName(name: String)` und gebe die Informationen der Person auf der Konsole mit der Methode `toString()` aus. Wenn keine Person gefunden wird, soll eine entsprechende Nachricht angezeigt werden.
+   - Implementiere eine Benutzereingabe, die nach einem Namen fragt.
+   - Suche die entsprechende Person mithilfe der Methode `findPersonByName(name: String)` und gebe die Informationen der Person auf der Konsole mit der Methode `toString()` aus. Wenn keine Person gefunden wird, soll eine entsprechende Nachricht angezeigt werden.
 
 ### Klassendiagramm
 
@@ -149,18 +149,18 @@ Implementiere die Enumeration `Product` und die zugehörigen Methoden gemäß de
 
 1. **Verfügbare Produkte definieren (3 Punkte)**
 
-   - (3 Punkte): Definiere die Produkte `LAPTOP`, `SMARTPHONE` und `TABLET` in der Enumeration `Product`, wobei jedes Produkt einen Preis besitzt.
+   - Definiere die Produkte `LAPTOP`, `SMARTPHONE` und `TABLET` in der Enumeration `Product`, wobei jedes Produkt einen Preis besitzt.
 
 2. **Konstruktor und Attribut `price` (3 Punkte)**
 
-   - (3 Punkte): Implementiere den Konstruktor der Enumeration `Product`, welcher das Attribut `price` initialisiert.
+   - Implementiere den Konstruktor der Enumeration `Product`, welcher das Attribut `price` initialisiert.
 
 3. **Methode `isAvailable(String productName)` (2 Punkte)**
 
-   - (2 Punkte): Implementiere die Methode `isAvailable(productName: String)`, welche überprüft, ob das angegebene Produkt verfügbar ist.
+   - Implementiere die Methode `isAvailable(productName: String)`, welche überprüft, ob das angegebene Produkt verfügbar ist.
 
 4. **Methode `getPrice()` (2 Punkte)**
-   - (2 Punkte): Implementiere die Methode `getPrice()`, welche den Preis des Produkts zurückgibt.
+   - Implementiere die Methode `getPrice()`, welche den Preis des Produkts zurückgibt.
 
 ## 3.2 Implementierung der ausführbaren Klasse `ExamTask03` (20 Punkte)
 
