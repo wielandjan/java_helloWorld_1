@@ -1,82 +1,186 @@
-# Musterklausur: Programmieraufgaben
+---
+title: Musterklausur
+description: ""
+sidebar_position: 10
+tags: []
+---
 
 ## Hinweise zur Klausur
 
+- Diese Klausur ist auf 120 Minuten ausgelegt und umfasst 100 Punkte.
 - Die in dieser Klausur verwendeten Personenbezeichnungen beziehen sich – sofern nicht anders kenntlich gemacht – auf alle Geschlechter.
 - Pakete und Klassenimporte müssen nicht angegeben werden.
 - Es kann davon ausgegangen werden, dass sämtliche Klassen entsprechende Implementierungen der `Object`-Methoden besitzen.
+- Der Stereotyp `enumeration` impliziert, dass die Aufzählung einen passenden Konstruktor sowie gegebenenfalls passende Getter für alle Attribute besitzt.
 - So nicht anders angegeben sollen Konstruktoren, Setter, Getter sowie die `Object`-Methoden wie in der Vorlesung gezeigt implementiert werden.
 - Die Konsolenausgabe-Methoden der Klasse `PrintStream` dürfen sinnvoll gekürzt geschrieben werden (z. B. `syso("Hello World")` statt `System.out.println("Hello World")`).
-- Methoden- und Attributsbezeichner dürfen sinnvoll gekürzt geschrieben werden (z. B. `getLWMCP()` statt `getLectureWithMostCreditPoints()`).
 
 ---
 
-## Aufgabe 1: Datum- und Zeitverarbeitung
+## Aufgabe 1 (25 Punkte)
 
-### Anforderungen
-
-1. Zeigen Sie das aktuelle Datum und die aktuelle Zeit an.
-2. Lassen Sie den Benutzer ein Datum (z. B. Geburtstag) eingeben und berechnen Sie den Wochentag dieses Datums.
-3. Berechnen Sie die Differenz in Tagen zwischen dem aktuellen Datum und dem eingegebenen Datum.
-4. Formatieren Sie das Datum in einem lesbaren Format (z. B. `dd.MM.yyyy`).
-
----
-
-## Aufgabe 2: Datei-Verarbeitung
-
-### Anforderungen
-
-1. Erstellen Sie eine Datei mit dem Namen `data.txt`, die folgende Inhalte enthält:
-
-   ```plaintext
-   Name;Alter;Beruf
-   Hans;30;Entwickler
-   Lisa;25;Designer
-   Peter;35;Manager
-   ```
-
-2. Schreiben Sie ein Programm, das die Datei liest und den Inhalt Zeile für Zeile auf der Konsole ausgibt.
-3. Extrahieren Sie die Daten und speichern Sie sie in einer `ArrayList` von Objekten.
-4. Lassen Sie den Benutzer über die Konsole nach einem Namen suchen und geben Sie die zugehörigen Informationen aus.
-
----
-
-## Aufgabe 3: Zeichenketten und Wrapper-Klassen
-
-### Anforderungen
-
-1. Zerlegen Sie eine Zeichenkette im Format `Hans;Peter;Lisa` in einzelne Namen und speichern Sie diese in einem Array.
-2. Konvertieren Sie eine Zahl im String-Format (z. B. `"42"`) in eine Ganzzahl mithilfe von Wrapper-Klassen.
-3. Lassen Sie den Benutzer eine Zahl eingeben und überprüfen Sie, ob sie positiv oder negativ ist.
-
----
-
-## Aufgabe 4: Dynamische Listen und Benutzerinteraktion
-
-### Anforderungen
-
-1. Lassen Sie den Benutzer mehrere Zahlen eingeben und speichern Sie diese in einer `ArrayList`.
-2. Berechnen Sie die Summe aller eingegebenen Zahlen.
-3. Geben Sie die größte und kleinste Zahl aus der Liste aus.
-
----
-
-## Aufgabe 5: Klassenstruktur
+- Erstelle die Klasse `DateManager` anhand des abgebildeten Klassendiagramms (20 Punkte).
+- Implementiere die ausführbare Klasse `ExamTask01` (5 Punkte). Diese soll:
+  - Das aktuelle Datum und die aktuelle Uhrzeit ausgeben.
+  - Den Benutzer auffordern, ein Datum einzugeben, und den Wochentag sowie die Differenz in Tagen berechnen.
 
 ### Klassendiagramm
 
 ```mermaid
 classDiagram
+    class DateManager {
+        +getCurrentDate(): LocalDate
+        +getCurrentTime(): LocalTime
+        +calculateDaysBetween(start: LocalDate, end: LocalDate): long
+        +getWeekDay(date: LocalDate): String
+    }
+```
+
+---
+
+## Aufgabe 2 (25 Punkte)
+
+- Implementiere die Klasse `DataProcessor` anhand des abgebildeten Klassendiagramms (15 Punkte).
+- Erstelle die Klasse `ExamTask02` (10 Punkte), die:
+  - Eine Datei `data.txt` mit Personendaten einliest.
+  - Den Benutzer auffordert, nach einem Namen zu suchen.
+  - Die zugehörigen Informationen ausgibt.
+
+### Klassendiagramm
+
+```mermaid
+classDiagram
+    class DataProcessor {
+        -filePath: String
+        +DataProcessor(filePath: String)
+        +readData(): List~Person~
+        +findPersonByName(name: String): Person
+    }
+
     class Person {
         -name: String
         -age: int
-        +Person(name: String, age: int)
-        +getName(): String
-        +getAge(): int
+        -profession: String
+        +Person(name: String, age: int, profession: String)
         +toString(): String
     }
+```
 
-    class Main {
-        +main(args: String[]): void
+---
+
+## Aufgabe 3 (30 Punkte)
+
+Erstelle die Klasse `OrderProcess` gemäß dem abgebildeten Aktivitätsdiagramm.
+
+### Aktivitätsdiagramm
+
+```mermaid
+stateDiagram-v2
+    state "Bestellung eingeben" as state1
+    state "Verfügbarkeit prüfen" as state2
+    state "Bestätigung an Kunden senden" as state3
+    state "Bestellung stornieren" as state4
+    state "Bezahlung veranlassen" as state5
+    state "Rechnung erstellen" as state6
+    state "Bestellung versenden" as state7
+    state "Bestellvorgang abgeschlossen" as state8
+
+    [*] --> state1
+    state1 --> state2
+    state2 --> state3: Verfügbar
+    state2 --> state4: Nicht verfügbar
+    state3 --> state5
+    state5 --> state6
+    state6 --> state7
+    state7 --> state8
+```
+
+---
+
+## Aufgabe 4 (20 Punkte)
+
+- Implementiere die Klassen `WeatherStation`, `Sensor`, und `WeatherData` gemäß dem abgebildeten Klassendiagramm (15 Punkte).
+- Erstelle eine ausführbare Klasse `WeatherApp` (5 Punkte), die:
+  - Mehrere Sensoren zur Wetterstation hinzufügt.
+  - Die gemessenen Wetterdaten auf der Konsole ausgibt.
+
+### Klassendiagramm
+
+```mermaid
+classDiagram
+    class WeatherStation {
+        -sensors: List~Sensor~
+        +WeatherStation()
+        +addSensor(sensor: Sensor): void
+        +collectData(): List~WeatherData~
+    }
+
+    class Sensor {
+        -type: String
+        +Sensor(type: String)
+        +measure(): WeatherData
+    }
+
+    class WeatherData {
+        -temperature: double
+        -humidity: double
+        +WeatherData(temperature: double, humidity: double)
+        +toString(): String
     }
 ```
+
+---
+
+## Beispielhafte Konsolenausgabe
+
+### Aufgabe 1
+
+```plaintext
+Aktuelles Datum: 01.12.2024
+Aktuelle Uhrzeit: 14:30
+Geben Sie ein Datum ein (yyyy-MM-dd): 1990-01-01
+Der Wochentag ist: Montag
+Differenz in Tagen: 12784
+```
+
+### Aufgabe 2
+
+```plaintext
+Name: Hans, Alter: 30, Beruf: Entwickler
+Name: Lisa, Alter: 25, Beruf: Designer
+Name: Peter, Alter: 35, Beruf: Manager
+Geben Sie einen Namen ein: Lisa
+Ergebnis: Name: Lisa, Alter: 25, Beruf: Designer
+```
+
+### Aufgabe 3
+
+```plaintext
+Bestellung eingeben: Laptop
+Verfügbarkeit prüfen...
+Bestätigung an Kunden senden: Ihre Bestellung ist verfügbar.
+Bezahlung veranlassen...
+Rechnung wird erstellt...
+Bestellung wird versendet...
+Bestellvorgang abgeschlossen.
+```
+
+### Aufgabe 4
+
+```plaintext
+Sensor hinzugefügt: Temperatur
+Sensor hinzugefügt: Luftfeuchtigkeit
+Gemessene Wetterdaten:
+Temperatur: 22.5°C, Luftfeuchtigkeit: 60%
+```
+
+---
+
+## Bewertung
+
+- **Aufgabe 1:** 25 Punkte
+- **Aufgabe 2:** 25 Punkte
+- **Aufgabe 3:** 30 Punkte
+- **Aufgabe 4:** 20 Punkte
+
+Viel Erfolg bei der Klausur!
