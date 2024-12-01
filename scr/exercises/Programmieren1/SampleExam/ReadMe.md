@@ -53,7 +53,7 @@ Sie sind ca. 708618917429 ms alt.
 - Implementiere die Klasse `DataProcessor` anhand des abgebildeten Klassendiagramms. Dabei sollen folgende Methoden umgesetzt werden:
   - `addPerson(person: Person)`: fügt `people` ein `Person`-Objekt an.
   - `findPersonByName(name: String)`: Sucht nach einer Person mit dem Namen in `people` und gibt das entsprechende `Person`-Objekt zurück. (15 Punkte)
-- Erstelle die Klasse `ExamTask02` (10 Punkte), die:
+- Erstelle die ausführbare Klasse `ExamTask02` (10 Punkte), die:
   - Eine Datei `data.txt` mit Personendaten (Name, Alter, Beruf) einliest.
   - Den Benutzer auffordert, nach einem Namen zu suchen.
   - Die zugehörigen Informationen zur eingegebenen Person auf der Konsole ausgibt mit toString().
@@ -100,30 +100,38 @@ Ergebnis: [[name=Lisa],[age=25],[profession=Designer]]
 
 ## Aufgabe 3 (30 Punkte)
 
-- Erstelle die Klasse `OrderProcess` gemäß dem abgebildeten Aktivitätsdiagramm (20 Punkte). Dabei sollen die Schritte des Bestellprozesses (Eingabe, Verfügbarkeit, Bestätigung, Bezahlung, Rechnungserstellung, Versand) wie im Diagramm beschrieben implementiert werden.
 - Implementiere eine Enumeration `Product` (10 Punkte), die eine Liste der verfügbaren Produkte enthält. Es sollen folgende Produkte verfügbar sein: `LAPTOP`, `SMARTPHONE`, `TABLET`. Die Enumeration enthält eine Methode `isAvailable(String productName)`, die prüft, ob ein Produkt verfügbar ist.
+- Erstelle die ausführbare Klasse `ExamTask03` als gemäß dem abgebildeten Aktivitätsdiagramm (20 Punkte). Dabei sollen die Schritte des Bestellprozesses (Eingabe, Verfügbarkeit, Bestätigung, Bezahlung, Rechnungserstellung, Versand) wie im Diagramm beschrieben implementiert werden.
 
 ### Aktivitätsdiagramm
 
 ```mermaid
 stateDiagram-v2
-    state "Bestellung eingeben" as state1
+    state "Produkt eingeben" as state1
     state "Verfügbarkeit prüfen" as state2
-    state "Bestätigung an Kunden senden" as state3
-    state "Bestellung stornieren" as state4
-    state "Bezahlung veranlassen" as state5
-    state "Rechnung erstellen" as state6
-    state "Bestellung versenden" as state7
-    state "Bestellvorgang abgeschlossen" as state8
+    state "Produkt ist verfügbar." as state3
+    state "Kaufpreis anzeigen" as state4
+    state "Möchten Sie das Produkt kaufen?" as state5
+    state "Bezahlung ..." as state6
+    state "Vorgang abgeschlossen." as state7
+    state "Produkt ist nicht verfügbar." as state8
+    state "Abbruch ... Vorgang abgebrochen." as state9
+    state "Neues Produkt suchen oder verlassen" as state10
+    state "ENDE" as state11
 
     [*] --> state1
     state1 --> state2
-    state2 --> state3: Verfügbar
-    state2 --> state4: Nicht verfügbar
-    state3 --> state5
-    state5 --> state6
+    state2 --> state3: Produkt verfügbar
+    state2 --> state8: Produkt nicht verfügbar
+    state3 --> state4
+    state4 --> state5
+    state5 --> state6: true
+    state5 --> state9: false
     state6 --> state7
-    state7 --> state8
+    state7 --> state10
+    state9 --> state10
+    state10 --> state1: 1
+    state10 --> state11: 2
 ```
 
 ### Klassendiagramm `Product`
@@ -131,24 +139,26 @@ stateDiagram-v2
 ```mermaid
 classDiagram
     class Product {
-        LAPTOP
-        SMARTPHONE
-        TABLET
-        +isAvailable(productName: String) boolean
+        LAPTOP(999.75)
+        SMARTPHONE(499.99)
+        TABLET(745.45)
+        +isAvailable(productName: String) Product #123;static#125;
+        +getPrice() double
     }
 ```
 
 ## Beispielhafte Konsolenausgabe
 
 ```plaintext
-Bestellung eingeben: Laptop
+Produkt suchen: LAPTOP
 Verfügbarkeit prüfen...
-Produkt ist verfügbar.
-Bestätigung an Kunden senden: Ihre Bestellung ist verfügbar.
-Bezahlung veranlassen...
-Rechnung wird erstellt...
-Bestellung wird versendet...
-Bestellvorgang abgeschlossen.
+Produkt ist verfügbar. || Produkt ist nicht verfügbar.
+Der Kaufpreis ist: 999.75€
+Möchte sie das Produkt kaufen Ja= [true] Nein =[false]? true || false
+Bezahlung ... || Abbruch ...
+Vorgang abgeschlossen. || Vorgang abgebrochen.
+Neues Produkt suchen [1] oder verlassen [2] ? 2
+Verlassen ...
 ```
 
 ---
@@ -226,4 +236,23 @@ the name of this enum constant
 LocalDate.atStartOfDay(ZoneId.systemDefault()) - Konvertiert das Datum zu einem LocalDateTime um Mitternacht und verwendet die aktuelle Zeitzone.
 .toInstant() - Wandelt es in ein Instant um.
 .toEpochMilli() - Konvertiert den Zeitpunkt in Millisekunden seit der Epoche (Unix-Zeitstempel).
+```
+
+```plaintext
+String java.lang.Enum.value()
+Returns the values as array of this enum constants, exactly as declared in its enum declaration.
+
+Returns:
+
+the the values as arry of this enum constants
+
+```
+
+```plaintext
+String java.lang.Enum.name()
+Returns the name of this enum constant, exactly as declared in its enum declaration. Most programmers should use the toString method in preference to this one, as the toString method may return a more user-friendly name. This method is designed primarily for use in specialized situations where correctness depends on getting the exact name, which will not vary from release to release.
+
+Returns:
+
+the name of this enum constant
 ```
