@@ -13,13 +13,13 @@ public class DateManager {
         return LocalTime.now();
     }
 
-    public long calculateDaysBetween(LocalDate birthday) {
+    public static long calculateDaysBetween(LocalDate birthday) {
         long now = System.currentTimeMillis();
         long lBirthday = birthday.atStartOfDay(ZoneId.systemDefault()).toInstant().toEpochMilli();
         return now - lBirthday;
     }
 
-    public String getWeekDay(LocalDate birthday) {
+    public static String getWeekDay(LocalDate birthday) {
         return birthday.getDayOfWeek().toString();
     }
 }

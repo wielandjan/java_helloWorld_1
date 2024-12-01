@@ -29,10 +29,10 @@
 ```mermaid
 classDiagram
     class DateManager {
-        +getCurrentDate() LocalDate #123;static#125
-        +getCurrentTime() LocalTime #123;static#125
-        +calculateDaysBetween(birthday: LocalDate) long
-        +getWeekDay(birthday: LocalDate) String
+        +getCurrentDate() LocalDate #123;static#125;
+        +getCurrentTime() LocalTime #123;static#125;
+        +calculateDaysBetween(birthday: LocalDate) long #123;static#125;
+        +getWeekDay(birthday: LocalDate) String #123;static#125;
     }
 ```
 
@@ -42,8 +42,8 @@ classDiagram
 Aktuelles Datum: 01.12.2024
 Aktuelle Uhrzeit: 14:30
 Geben Sie ihr Geburtsdatum ein (yyyy-MM-dd): 1990-01-01
-Sie sind an einem Montag geboren
-Sie sind ca. 12784 ms alt.
+Sie sind an einem MONDAY geboren.
+Sie sind ca. 708618917429 ms alt.
 ```
 
 ---
@@ -51,8 +51,8 @@ Sie sind ca. 12784 ms alt.
 ## Aufgabe 2 (25 Punkte)
 
 - Implementiere die Klasse `DataProcessor` anhand des abgebildeten Klassendiagramms. Dabei sollen folgende Methoden umgesetzt werden:
-  - `readData()`: Liest die Daten einer angegebenen Datei ein und gibt eine Liste von `Person`-Objekten zurück.
-  - `findPersonByName(name: String)`: Sucht nach einer Person in den eingelesenen Daten und gibt das entsprechende `Person`-Objekt zurück. (15 Punkte)
+  - `addPerson(person: Person)`: fügt `people` ein `Person`-Objekt an.
+  - `findPersonByName(name: String)`: Sucht nach einer Person mit dem Namen in `people` und gibt das entsprechende `Person`-Objekt zurück. (15 Punkte)
 - Erstelle die Klasse `ExamTask02` (10 Punkte), die:
   - Eine Datei `data.txt` mit Personendaten (Name, Alter, Beruf) einliest.
   - Den Benutzer auffordert, nach einem Namen zu suchen.
@@ -63,36 +63,37 @@ Sie sind ca. 12784 ms alt.
 ```mermaid
 classDiagram
     class DataProcessor {
-        -filePath String #123;final#125
-        +DataProcessor(filePath: String)
-        +readData() List~Person~
+        -people List<Person>;
+        +DataProcessor()
+        +addPerson(Person person) void
         +findPersonByName(name: String) Person
     }
 
     class Person {
-        -name String #123;final#125
-        -age int #123;final#125
-        -profession String #123;final#125
+        -name String #123;final#125;
+        -age int #123;final#125;
+        -profession String #123;final#125;
         +Person(name: String, age: int, profession: String)
+        +getName() String
         +toString() String
     }
 
     DataProcessor --> Person
 ```
 
-## data.txt
+## data.txt (name|age|profession)
 
 ```plaintext
-Name: Hans, Alter: 30, Beruf: Entwickler
-Name: Lisa, Alter: 25, Beruf: Designer
-Name: Peter, Alter: 35, Beruf: Manager
+Hans|0|Entwickler
+Lisa|25|Designer
+Peter|35|Manager
 ```
 
 ## Beispielhafte Konsolenausgabe
 
 ```plaintext
 Geben Sie einen Namen ein: Lisa
-Ergebnis: Name: Lisa, Alter: 25, Beruf: Designer
+Ergebnis: [[name=Lisa],[age=25],[profession=Designer]]
 ```
 
 ---
@@ -167,14 +168,14 @@ Bestellvorgang abgeschlossen.
 ```mermaid
 classDiagram
     class WeatherStation {
-        -sensors List~Sensor~ #123;final#125
+        -sensors List~Sensor~ #123;final#125;
         +WeatherStation()
         +addSensor(sensor: Sensor) void
         +collectData() List~WeatherData~
     }
 
     class Sensor {
-        -type String #123;final#125
+        -type String #123;final#125;
         +Sensor(type: String)
         +measure() WeatherData
     }
