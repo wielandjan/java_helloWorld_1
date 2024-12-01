@@ -64,13 +64,16 @@ classDiagram
         +Person(name: String, age: int, profession: String)
         +toString(): String
     }
+
+    DataProcessor --> Person
 ```
 
 ---
 
 ## Aufgabe 3 (30 Punkte)
 
-Erstelle die Klasse `OrderProcess` gemäß dem abgebildeten Aktivitätsdiagramm.
+- Erstelle die Klasse `OrderProcess` gemäß dem abgebildeten Aktivitätsdiagramm (20 Punkte).
+- Implementiere eine Enumeration `Product` (10 Punkte), die eine Liste der verfügbaren Produkte enthält.
 
 ### Aktivitätsdiagramm
 
@@ -93,6 +96,25 @@ stateDiagram-v2
     state5 --> state6
     state6 --> state7
     state7 --> state8
+```
+
+### Enumeration `Product`
+
+```java
+public enum Product {
+    LAPTOP,
+    SMARTPHONE,
+    TABLET;
+
+    public static boolean isAvailable(String productName) {
+        for (Product product : Product.values()) {
+            if (product.name().equalsIgnoreCase(productName)) {
+                return true;
+            }
+        }
+        return false;
+    }
+}
 ```
 
 ---
@@ -127,6 +149,9 @@ classDiagram
         +WeatherData(temperature: double, humidity: double)
         +toString(): String
     }
+
+    WeatherStation --> Sensor
+    Sensor --> WeatherData
 ```
 
 ---
@@ -158,6 +183,7 @@ Ergebnis: Name: Lisa, Alter: 25, Beruf: Designer
 ```plaintext
 Bestellung eingeben: Laptop
 Verfügbarkeit prüfen...
+Produkt ist verfügbar.
 Bestätigung an Kunden senden: Ihre Bestellung ist verfügbar.
 Bezahlung veranlassen...
 Rechnung wird erstellt...
