@@ -1,10 +1,3 @@
----
-title: Musterklausur
-description: ""
-sidebar_position: 10
-tags: []
----
-
 ## Hinweise zur Klausur
 
 - Diese Klausur ist auf 120 Minuten ausgelegt und umfasst 100 Punkte.
@@ -118,23 +111,16 @@ stateDiagram-v2
     state7 --> state8
 ```
 
-### Enumeration `Product`
+### Klassendiagramm `Product`
 
-```java
-public enum Product {
-    LAPTOP,
-    SMARTPHONE,
-    TABLET;
-
-    public static boolean isAvailable(String productName) {
-        for (Product product : Product.values()) {
-            if (product.name().equalsIgnoreCase(productName)) {
-                return true;
-            }
-        }
-        return false;
+```mermaid
+classDiagram
+    class Product {
+        +LAPTOP
+        +SMARTPHONE
+        +TABLET
+        +isAvailable(productName: String): boolean
     }
-}
 ```
 
 ## Beispielhafte Konsolenausgabe
@@ -197,12 +183,3 @@ Temperatur: 22.5°C, Luftfeuchtigkeit: 60%
 ```
 
 ---
-
-## Bewertung
-
-- **Aufgabe 1:** 25 Punkte
-- **Aufgabe 2:** 25 Punkte
-- **Aufgabe 3:** 30 Punkte
-- **Aufgabe 4:** 20 Punkte
-
-Viel Erfolg bei der Klausur!
