@@ -13,10 +13,10 @@
 ## Aufgabe 1 (25 Punkte)
 
 - Erstelle die Klasse `DateManager` anhand des abgebildeten Klassendiagramms. Dabei sollen folgende Methoden implementiert werden:
-  - `getCurrentDate()`: Gibt das aktuelle Datum als `LocalDate` zurück.
-  - `getCurrentTime()`: Gibt die aktuelle Uhrzeit als `LocalTime` zurück.
-  - `calculateDaysBetween(start: LocalDate, end: LocalDate)`: Berechnet die Anzahl der Tage zwischen zwei angegebenen Daten.
-  - `getWeekDay(date: LocalDate)`: Gibt den Wochentag für ein angegebenes Datum zurück. (20 Punkte)
+  - Gibt das aktuelle Datum als `LocalDate` zurück.
+  - Gibt die aktuelle Uhrzeit als `LocalTime` zurück.
+  - Berechnet die Anzahl der Tage zwischen zwei angegebenen Daten.
+  - Gibt den Wochentag für ein angegebenes Datum zurück. (20 Punkte)
 - Implementiere die ausführbare Klasse `ExamTask01` (5 Punkte). Diese soll:
   - Das aktuelle Datum und die aktuelle Uhrzeit auf der Konsole ausgeben.
   - Den Benutzer auffordern, ein Datum im Format `yyyy-MM-dd` einzugeben.
@@ -79,15 +79,20 @@ classDiagram
     DataProcessor --> Person
 ```
 
-## Beispielhafte Konsolenausgabe
+## data.txt
 
 ```plaintext
 Name: Hans, Alter: 30, Beruf: Entwickler
 Name: Lisa, Alter: 25, Beruf: Designer
 Name: Peter, Alter: 35, Beruf: Manager
+```
+
+## Beispielhafte Konsolenausgabe
+
 Geben Sie einen Namen ein: Lisa
 Ergebnis: Name: Lisa, Alter: 25, Beruf: Designer
-```
+
+````
 
 ---
 
@@ -117,7 +122,7 @@ stateDiagram-v2
     state5 --> state6
     state6 --> state7
     state7 --> state8
-```
+````
 
 ### Klassendiagramm `Product`
 
