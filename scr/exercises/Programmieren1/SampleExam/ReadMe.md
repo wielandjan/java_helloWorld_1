@@ -12,10 +12,16 @@
 
 ## Aufgabe 1 (25 Punkte)
 
-- Erstelle die Klasse `DateManager` anhand des abgebildeten Klassendiagramms (20 Punkte).
+- Erstelle die Klasse `DateManager` anhand des abgebildeten Klassendiagramms. Dabei sollen folgende Methoden implementiert werden:
+  - `getCurrentDate()`: Gibt das aktuelle Datum als `LocalDate` zurück.
+  - `getCurrentTime()`: Gibt die aktuelle Uhrzeit als `LocalTime` zurück.
+  - `calculateDaysBetween(start: LocalDate, end: LocalDate)`: Berechnet die Anzahl der Tage zwischen zwei angegebenen Daten.
+  - `getWeekDay(date: LocalDate)`: Gibt den Wochentag für ein angegebenes Datum zurück. (20 Punkte)
 - Implementiere die ausführbare Klasse `ExamTask01` (5 Punkte). Diese soll:
-  - Das aktuelle Datum und die aktuelle Uhrzeit ausgeben.
-  - Den Benutzer auffordern, ein Datum einzugeben, und den Wochentag sowie die Differenz in Tagen berechnen.
+  - Das aktuelle Datum und die aktuelle Uhrzeit auf der Konsole ausgeben.
+  - Den Benutzer auffordern, ein Datum im Format `yyyy-MM-dd` einzugeben.
+  - Den Wochentag des eingegebenen Datums berechnen und anzeigen.
+  - Die Differenz in Tagen zwischen dem aktuellen Datum und dem eingegebenen Datum berechnen und anzeigen.
 
 ### Klassendiagramm
 
@@ -43,11 +49,13 @@ Differenz in Tagen: 12784
 
 ## Aufgabe 2 (25 Punkte)
 
-- Implementiere die Klasse `DataProcessor` anhand des abgebildeten Klassendiagramms (15 Punkte).
+- Implementiere die Klasse `DataProcessor` anhand des abgebildeten Klassendiagramms. Dabei sollen folgende Methoden umgesetzt werden:
+  - `readData()`: Liest die Daten einer angegebenen Datei ein und gibt eine Liste von `Person`-Objekten zurück.
+  - `findPersonByName(name: String)`: Sucht nach einer Person in den eingelesenen Daten und gibt das entsprechende `Person`-Objekt zurück. (15 Punkte)
 - Erstelle die Klasse `ExamTask02` (10 Punkte), die:
-  - Eine Datei `data.txt` mit Personendaten einliest.
+  - Eine Datei `data.txt` mit Personendaten (Name, Alter, Beruf) einliest.
   - Den Benutzer auffordert, nach einem Namen zu suchen.
-  - Die zugehörigen Informationen ausgibt.
+  - Die zugehörigen Informationen zur eingegebenen Person auf der Konsole ausgibt.
 
 ### Klassendiagramm
 
@@ -85,8 +93,8 @@ Ergebnis: Name: Lisa, Alter: 25, Beruf: Designer
 
 ## Aufgabe 3 (30 Punkte)
 
-- Erstelle die Klasse `OrderProcess` gemäß dem abgebildeten Aktivitätsdiagramm (20 Punkte).
-- Implementiere eine Enumeration `Product` (10 Punkte), die eine Liste der verfügbaren Produkte enthält.
+- Erstelle die Klasse `OrderProcess` gemäß dem abgebildeten Aktivitätsdiagramm (20 Punkte). Dabei sollen die Schritte des Bestellprozesses (Eingabe, Verfügbarkeit, Bestätigung, Bezahlung, Rechnungserstellung, Versand) wie im Diagramm beschrieben implementiert werden.
+- Implementiere eine Enumeration `Product` (10 Punkte), die eine Liste der verfügbaren Produkte enthält. Es sollen folgende Produkte verfügbar sein: `LAPTOP`, `SMARTPHONE`, `TABLET`. Die Enumeration enthält eine Methode `isAvailable(String productName)`, die prüft, ob ein Produkt verfügbar ist.
 
 ### Aktivitätsdiagramm
 
@@ -116,9 +124,9 @@ stateDiagram-v2
 ```mermaid
 classDiagram
     class Product {
-        +LAPTOP
-        +SMARTPHONE
-        +TABLET
+        LAPTOP
+        SMARTPHONE
+        TABLET
         +isAvailable(productName: String): boolean
     }
 ```
@@ -140,7 +148,10 @@ Bestellvorgang abgeschlossen.
 
 ## Aufgabe 4 (20 Punkte)
 
-- Implementiere die Klassen `WeatherStation`, `Sensor`, und `WeatherData` gemäß dem abgebildeten Klassendiagramm (15 Punkte).
+- Implementiere die Klassen `WeatherStation`, `Sensor`, und `WeatherData` gemäß dem abgebildeten Klassendiagramm. Dabei sollen folgende Methoden umgesetzt werden:
+  - `WeatherStation`: Verwaltet eine Liste von Sensoren, ermöglicht das Hinzufügen von Sensoren und sammelt die Wetterdaten von allen Sensoren.
+  - `Sensor`: Repräsentiert einen Sensor (z. B. Temperatur, Luftfeuchtigkeit) und misst Wetterdaten.
+  - `WeatherData`: Enthält die gemessenen Wetterinformationen (Temperatur und Luftfeuchtigkeit). (15 Punkte)
 - Erstelle eine ausführbare Klasse `WeatherApp` (5 Punkte), die:
   - Mehrere Sensoren zur Wetterstation hinzufügt.
   - Die gemessenen Wetterdaten auf der Konsole ausgibt.
