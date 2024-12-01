@@ -115,7 +115,8 @@ stateDiagram-v2
     state "Bezahlung ..." as state6
     state "Vorgang abgeschlossen." as state7
     state "Produkt ist nicht verfügbar." as state8
-    state "Abbruch ... Vorgang abgebrochen." as state9
+    state "Abbruch ..." as state9a
+    state "Vorgang abgebrochen." as state9b
     state "Neues Produkt suchen oder verlassen" as state10
     state "ENDE" as state11
 
@@ -123,13 +124,15 @@ stateDiagram-v2
     state1 --> state2
     state2 --> state3: Produkt verfügbar
     state2 --> state8: Produkt nicht verfügbar
+    state8 --> state10
     state3 --> state4
     state4 --> state5
     state5 --> state6: true
-    state5 --> state9: false
+    state5 --> state9a: false
+    state9a --> state9b
+    state9b --> state10
     state6 --> state7
     state7 --> state10
-    state9 --> state10
     state10 --> state1: 1
     state10 --> state11: 2
 ```
