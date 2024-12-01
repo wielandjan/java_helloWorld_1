@@ -1,4 +1,4 @@
-package exercises.K2;
+package exercises.Programmieren1.K2;
 
 import java.util.Random;
 
