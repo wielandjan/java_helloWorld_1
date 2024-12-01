@@ -29,8 +29,8 @@
 ```mermaid
 classDiagram
     class DateManager {
-        +__getCurrentDate()__ LocalDate
-        +__getCurrentTime()__ LocalTime
+        +{static} getCurrentDate() LocalDate
+        +{static} getCurrentTime() LocalTime
         +calculateDaysBetween(birthday: LocalDate) long
         +getWeekDay(birthday: LocalDate) String
     }
