@@ -76,7 +76,7 @@ classDiagram
         +toString() String
     }
 
-    DataProcessor --- Person
+    DataProcessor --> Person
 ```
 
 ## data.txt
@@ -185,8 +185,8 @@ classDiagram
         +toString() String
     }
 
-    WeatherStation --- Sensor
-    Sensor --- WeatherData
+    WeatherStation --> Sensor
+    Sensor --> WeatherData
 ```
 
 ## Beispielhafte Konsolenausgabe
