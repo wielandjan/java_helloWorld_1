@@ -268,10 +268,3 @@ Verlassen ...
 
 - **Rückgabetyp:** `Enum[]` (Array von Enum-Konstanten)
 - **Beschreibung:** Gibt alle Enum-Konstanten als Array zurück, genau wie sie in der Enum-Deklaration angegeben sind.
-
-## 5. `Enum.name()`
-
-- **Rückgabetyp:** `String`
-- **Beschreibung:** Gibt den Namen der Enum-Konstante genau wie in der Deklaration zurück.
-  - **Hinweis:** Die meisten Entwickler sollten die `toString()`-Methode bevorzugen, da diese eine benutzerfreundlichere Darstellung bietet.
-  - **Nutzung:** Wird hauptsächlich in speziellen Situationen verwendet, in denen die genaue Übereinstimmung des Namens wichtig ist (wird sich nicht zwischen Versionen ändern).

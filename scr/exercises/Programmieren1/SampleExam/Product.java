@@ -13,7 +13,7 @@ public enum Product {
 
     public static Product isAvailible(String productName) {
         for (Product product : Product.values()) {
-            if (product.name().equals(productName)) {
+            if (product.toString().equals(productName)) {
                 return product;
             }
         }
