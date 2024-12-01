@@ -46,7 +46,7 @@ Implementiere die Klasse `DateManager` und die zugehörigen Methoden gemäß des
    - Berechne den Wochentag des vom Benutzer eingegebenen Datums und zeige diesen auf der Konsole an.
 
 4. **Differenz in Tagen zwischen aktuellem Datum und eingegebenem Datum berechnen und anzeigen (8 Punkte)**
-   - (8 Punkte): Berechne die Differenz in Tagen zwischen dem aktuellen Datum und dem eingegebenen Datum und zeige diese Differenz auf der Konsole an.
+   - Berechne die Differenz in Tagen zwischen dem aktuellen Datum und dem eingegebenen Datum und zeige diese Differenz auf der Konsole an.
 
 ## Klassendiagramm
 
