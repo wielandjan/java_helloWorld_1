@@ -36,6 +36,16 @@ classDiagram
     }
 ```
 
+## Beispielhafte Konsolenausgabe
+
+```plaintext
+Aktuelles Datum: 01.12.2024
+Aktuelle Uhrzeit: 14:30
+Geben Sie ein Datum ein (yyyy-MM-dd): 1990-01-01
+Der Wochentag ist: Montag
+Differenz in Tagen: 12784
+```
+
 ---
 
 ## Aufgabe 2 (25 Punkte)
@@ -66,6 +76,16 @@ classDiagram
     }
 
     DataProcessor --> Person
+```
+
+## Beispielhafte Konsolenausgabe
+
+```plaintext
+Name: Hans, Alter: 30, Beruf: Entwickler
+Name: Lisa, Alter: 25, Beruf: Designer
+Name: Peter, Alter: 35, Beruf: Manager
+Geben Sie einen Namen ein: Lisa
+Ergebnis: Name: Lisa, Alter: 25, Beruf: Designer
 ```
 
 ---
@@ -117,6 +137,19 @@ public enum Product {
 }
 ```
 
+## Beispielhafte Konsolenausgabe
+
+```plaintext
+Bestellung eingeben: Laptop
+Verfügbarkeit prüfen...
+Produkt ist verfügbar.
+Bestätigung an Kunden senden: Ihre Bestellung ist verfügbar.
+Bezahlung veranlassen...
+Rechnung wird erstellt...
+Bestellung wird versendet...
+Bestellvorgang abgeschlossen.
+```
+
 ---
 
 ## Aufgabe 4 (20 Punkte)
@@ -154,44 +187,7 @@ classDiagram
     Sensor --> WeatherData
 ```
 
----
-
 ## Beispielhafte Konsolenausgabe
-
-### Aufgabe 1
-
-```plaintext
-Aktuelles Datum: 01.12.2024
-Aktuelle Uhrzeit: 14:30
-Geben Sie ein Datum ein (yyyy-MM-dd): 1990-01-01
-Der Wochentag ist: Montag
-Differenz in Tagen: 12784
-```
-
-### Aufgabe 2
-
-```plaintext
-Name: Hans, Alter: 30, Beruf: Entwickler
-Name: Lisa, Alter: 25, Beruf: Designer
-Name: Peter, Alter: 35, Beruf: Manager
-Geben Sie einen Namen ein: Lisa
-Ergebnis: Name: Lisa, Alter: 25, Beruf: Designer
-```
-
-### Aufgabe 3
-
-```plaintext
-Bestellung eingeben: Laptop
-Verfügbarkeit prüfen...
-Produkt ist verfügbar.
-Bestätigung an Kunden senden: Ihre Bestellung ist verfügbar.
-Bezahlung veranlassen...
-Rechnung wird erstellt...
-Bestellung wird versendet...
-Bestellvorgang abgeschlossen.
-```
-
-### Aufgabe 4
 
 ```plaintext
 Sensor hinzugefügt: Temperatur
@@ -202,11 +198,4 @@ Temperatur: 22.5°C, Luftfeuchtigkeit: 60%
 
 ---
 
-## Bewertung
-
-- **Aufgabe 1:** 25 Punkte
-- **Aufgabe 2:** 25 Punkte
-- **Aufgabe 3:** 30 Punkte
-- **Aufgabe 4:** 20 Punkte
-
-Viel Erfolg bei der Klausur!
+---
