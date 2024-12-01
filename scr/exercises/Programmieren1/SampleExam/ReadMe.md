@@ -28,10 +28,10 @@
 ```mermaid
 classDiagram
     class DateManager {
-        +getCurrentDate(): LocalDate
-        +getCurrentTime(): LocalTime
-        +calculateDaysBetween(start: LocalDate, end: LocalDate): long
-        +getWeekDay(date: LocalDate): String
+        +getCurrentDate() LocalDate
+        +getCurrentTime() LocalTime
+        +calculateDaysBetween(start: LocalDate, end: LocalDate) long
+        +getWeekDay(date: LocalDate) String
     }
 ```
 
@@ -62,21 +62,21 @@ Differenz in Tagen: 12784
 ```mermaid
 classDiagram
     class DataProcessor {
-        -filePath: String
+        -filePath String #123;final#125
         +DataProcessor(filePath: String)
-        +readData(): List~Person~
-        +findPersonByName(name: String): Person
+        +readData() List~Person~
+        +findPersonByName(name: String) Person
     }
 
     class Person {
-        -name: String
-        -age: int
-        -profession: String
+        -name String #123;final#125
+        -age int #123;final#125
+        -profession String #123;final#125
         +Person(name: String, age: int, profession: String)
-        +toString(): String
+        +toString() String
     }
 
-    DataProcessor --> Person
+    DataProcessor --- Person
 ```
 
 ## data.txt
@@ -132,7 +132,7 @@ classDiagram
         LAPTOP
         SMARTPHONE
         TABLET
-        +isAvailable(productName: String): boolean
+        +isAvailable(productName: String) boolean
     }
 ```
 
@@ -166,27 +166,27 @@ Bestellvorgang abgeschlossen.
 ```mermaid
 classDiagram
     class WeatherStation {
-        -sensors: List~Sensor~
+        -sensors List~Sensor~ #123;final#125
         +WeatherStation()
-        +addSensor(sensor: Sensor): void
-        +collectData(): List~WeatherData~
+        +addSensor(sensor: Sensor) void
+        +collectData() List~WeatherData~
     }
 
     class Sensor {
-        -type: String
+        -type String #123;final#125
         +Sensor(type: String)
-        +measure(): WeatherData
+        +measure() WeatherData
     }
 
     class WeatherData {
-        -temperature: double
-        -humidity: double
+        -temperature double
+        -humidity double
         +WeatherData(temperature: double, humidity: double)
-        +toString(): String
+        +toString() String
     }
 
-    WeatherStation --> Sensor
-    Sensor --> WeatherData
+    WeatherStation --- Sensor
+    Sensor --- WeatherData
 ```
 
 ## Beispielhafte Konsolenausgabe
