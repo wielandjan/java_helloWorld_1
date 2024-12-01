@@ -56,7 +56,7 @@ Sie sind ca. 708618917429 ms alt.
 - Erstelle die Klasse `ExamTask02` (10 Punkte), die:
   - Eine Datei `data.txt` mit Personendaten (Name, Alter, Beruf) einliest.
   - Den Benutzer auffordert, nach einem Namen zu suchen.
-  - Die zugehörigen Informationen zur eingegebenen Person auf der Konsole ausgibt.
+  - Die zugehörigen Informationen zur eingegebenen Person auf der Konsole ausgibt mit toString().
 
 ### Klassendiagramm
 
@@ -84,9 +84,9 @@ classDiagram
 ## data.txt (name|age|profession)
 
 ```plaintext
-Hans|40|Entwickler
-Lisa|25|Designer
-Peter|35|Manager
+Hans;40;Entwickler
+Lisa;25;Designer
+Peter;35;Manager
 ```
 
 ## Beispielhafte Konsolenausgabe

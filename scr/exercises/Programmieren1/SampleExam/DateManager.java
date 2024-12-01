@@ -5,6 +5,7 @@ import java.time.LocalTime;
 import java.time.ZoneId;
 
 public class DateManager {
+
     public static LocalDate getCurrentLocalDate() {
         return LocalDate.now();
     }

@@ -7,7 +7,7 @@ public class DataProcessor {
     private List<Person> people;
 
     public DataProcessor() {
-        List<Person> people = new ArrayList<>();
+        people = new ArrayList<>();
     }
 
     public void addPerson(Person person) {
