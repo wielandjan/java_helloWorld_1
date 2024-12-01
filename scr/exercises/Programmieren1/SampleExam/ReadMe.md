@@ -198,4 +198,11 @@ Temperatur: 22.5°C, Luftfeuchtigkeit: 60%
 
 ---
 
----
+## Bewertung
+
+- **Aufgabe 1:** 25 Punkte
+- **Aufgabe 2:** 25 Punkte
+- **Aufgabe 3:** 30 Punkte
+- **Aufgabe 4:** 20 Punkte
+
+Viel Erfolg bei der Klausur!
