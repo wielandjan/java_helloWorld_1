@@ -84,7 +84,7 @@ classDiagram
 ## data.txt (name|age|profession)
 
 ```plaintext
-Hans|0|Entwickler
+Hans|40|Entwickler
 Lisa|25|Designer
 Peter|35|Manager
 ```
