@@ -89,10 +89,10 @@ Name: Peter, Alter: 35, Beruf: Manager
 
 ## Beispielhafte Konsolenausgabe
 
+```plaintext
 Geben Sie einen Namen ein: Lisa
 Ergebnis: Name: Lisa, Alter: 25, Beruf: Designer
-
-````
+```
 
 ---
 
@@ -199,4 +199,7 @@ Temperatur: 22.5°C, Luftfeuchtigkeit: 60%
 ```
 
 ---
-````
+
+```
+
+```
