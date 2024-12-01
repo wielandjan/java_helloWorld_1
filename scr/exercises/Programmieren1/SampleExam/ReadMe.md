@@ -29,8 +29,8 @@
 ```mermaid
 classDiagram
     class DateManager {
-        +getCurrentDate() LocalDate
-        +getCurrentTime() LocalTime
+        +__getCurrentDate()__ LocalDate
+        +__getCurrentTime()__ LocalTime
         +calculateDaysBetween(birthday: LocalDate) long
         +getWeekDay(birthday: LocalDate) String
     }
@@ -200,3 +200,29 @@ Temperatur: 22.5°C, Luftfeuchtigkeit: 60%
 ```
 
 ---
+
+## Hinweisse
+
+```plaintext
+DayOfWeek java.time.LocalDate.getDayOfWeek()
+Gets the day-of-week field, which is an enum DayOfWeek.
+
+This method returns the enum DayOfWeek for the day-of-week. This avoids confusion as to what int values mean. If you need access to the primitive int value then the enum provides the int value.
+```
+
+```plaintext
+String java.lang.Enum.toString()
+Returns the name of this enum constant, as contained in the declaration. This method may be overridden, though it typically isn't necessary or desirable. An enum class should override this method when a more "programmer-friendly" string form exists.
+
+Overrides: toString() in Object
+
+Returns:
+
+the name of this enum constant
+```
+
+```plaintext
+LocalDate.atStartOfDay(ZoneId.systemDefault()) - Konvertiert das Datum zu einem LocalDateTime um Mitternacht und verwendet die aktuelle Zeitzone.
+.toInstant() - Wandelt es in ein Instant um.
+.toEpochMilli() - Konvertiert den Zeitpunkt in Millisekunden seit der Epoche (Unix-Zeitstempel).
+```

@@ -5,11 +5,11 @@ import java.time.LocalTime;
 import java.time.ZoneId;
 
 public class DateManager {
-    public LocalDate getCurrentLocalDate() {
+    public static LocalDate getCurrentLocalDate() {
         return LocalDate.now();
     }
 
-    public LocalTime getCurrentLocalTime() {
+    public static LocalTime getCurrentLocalTime() {
         return LocalTime.now();
     }
 
@@ -17,5 +17,9 @@ public class DateManager {
         long now = System.currentTimeMillis();
         long lBirthday = birthday.atStartOfDay(ZoneId.systemDefault()).toInstant().toEpochMilli();
         return now - lBirthday;
+    }
+
+    public String getWeekDay(LocalDate birthday) {
+        return birthday.getDayOfWeek().toString();
     }
 }
