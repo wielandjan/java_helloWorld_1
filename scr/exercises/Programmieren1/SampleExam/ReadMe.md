@@ -15,7 +15,8 @@
 - Erstelle die Klasse `DateManager` anhand des abgebildeten Klassendiagramms. Dabei sollen folgende Methoden implementiert werden:
   - Gibt das aktuelle Datum als `LocalDate` zurück.
   - Gibt die aktuelle Uhrzeit als `LocalTime` zurück.
-  - Berechnet die Anzahl der Tage zwischen zwei angegebenen Daten.
+  - Berechnet die Anzahl der Millisekundn zwischen `birthday` und now().
+    (LocalDate.atStartOfDay(ZoneId.systemDefault()) - Konvertiert das Datum zu einem LocalDateTime um Mitternacht und verwendet die aktuelle Zeitzone. Wobei LocalDate dem Typ LocalDate entsprechne muss)
   - Gibt den Wochentag für ein angegebenes Datum zurück. (20 Punkte)
 - Implementiere die ausführbare Klasse `ExamTask01` (5 Punkte). Diese soll:
   - Das aktuelle Datum und die aktuelle Uhrzeit auf der Konsole ausgeben.
@@ -30,8 +31,8 @@ classDiagram
     class DateManager {
         +getCurrentDate() LocalDate
         +getCurrentTime() LocalTime
-        +calculateDaysBetween(start: LocalDate, end: LocalDate) long
-        +getWeekDay(date: LocalDate) String
+        +calculateDaysBetween(birthday: LocalDate) long
+        +getWeekDay(birthday: LocalDate) String
     }
 ```
 
@@ -40,9 +41,9 @@ classDiagram
 ```plaintext
 Aktuelles Datum: 01.12.2024
 Aktuelle Uhrzeit: 14:30
-Geben Sie ein Datum ein (yyyy-MM-dd): 1990-01-01
-Der Wochentag ist: Montag
-Differenz in Tagen: 12784
+Geben Sie ihr Geburtsdatum ein (yyyy-MM-dd): 1990-01-01
+Sie sind an einem Montag geboren
+Sie sind ca. 12784 ms alt.
 ```
 
 ---
