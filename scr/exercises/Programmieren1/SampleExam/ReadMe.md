@@ -199,7 +199,3 @@ Temperatur: 22.5°C, Luftfeuchtigkeit: 60%
 ```
 
 ---
-
-```
-
-```
