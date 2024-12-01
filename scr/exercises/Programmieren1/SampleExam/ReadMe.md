@@ -76,7 +76,7 @@ classDiagram
         +toString() String
     }
 
-    DataProcessor --|> Person
+    DataProcessor --> Person
 ```
 
 ## data.txt
@@ -89,10 +89,10 @@ Name: Peter, Alter: 35, Beruf: Manager
 
 ## Beispielhafte Konsolenausgabe
 
-```plaintext
 Geben Sie einen Namen ein: Lisa
 Ergebnis: Name: Lisa, Alter: 25, Beruf: Designer
-```
+
+````
 
 ---
 
@@ -100,6 +100,29 @@ Ergebnis: Name: Lisa, Alter: 25, Beruf: Designer
 
 - Erstelle die Klasse `OrderProcess` gemäß dem abgebildeten Aktivitätsdiagramm (20 Punkte). Dabei sollen die Schritte des Bestellprozesses (Eingabe, Verfügbarkeit, Bestätigung, Bezahlung, Rechnungserstellung, Versand) wie im Diagramm beschrieben implementiert werden.
 - Implementiere eine Enumeration `Product` (10 Punkte), die eine Liste der verfügbaren Produkte enthält. Es sollen folgende Produkte verfügbar sein: `LAPTOP`, `SMARTPHONE`, `TABLET`. Die Enumeration enthält eine Methode `isAvailable(String productName)`, die prüft, ob ein Produkt verfügbar ist.
+
+### Aktivitätsdiagramm
+
+```mermaid
+stateDiagram-v2
+    state "Bestellung eingeben" as state1
+    state "Verfügbarkeit prüfen" as state2
+    state "Bestätigung an Kunden senden" as state3
+    state "Bestellung stornieren" as state4
+    state "Bezahlung veranlassen" as state5
+    state "Rechnung erstellen" as state6
+    state "Bestellung versenden" as state7
+    state "Bestellvorgang abgeschlossen" as state8
+
+    [*] --> state1
+    state1 --> state2
+    state2 --> state3: Verfügbar
+    state2 --> state4: Nicht verfügbar
+    state3 --> state5
+    state5 --> state6
+    state6 --> state7
+    state7 --> state8
+```
 
 ### Klassendiagramm `Product`
 
@@ -109,7 +132,7 @@ classDiagram
         LAPTOP
         SMARTPHONE
         TABLET
-        +isAvailable(productName: String): boolean
+        +isAvailable(productName: String) boolean
     }
 ```
 
@@ -162,8 +185,8 @@ classDiagram
         +toString() String
     }
 
-    WeatherStation --|> Sensor
-    Sensor --|> WeatherData
+    WeatherStation --> Sensor
+    Sensor --> WeatherData
 ```
 
 ## Beispielhafte Konsolenausgabe
@@ -176,3 +199,4 @@ Temperatur: 22.5°C, Luftfeuchtigkeit: 60%
 ```
 
 ---
+````
