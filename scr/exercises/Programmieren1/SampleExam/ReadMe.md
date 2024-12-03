@@ -53,10 +53,10 @@ Implementiere die Klasse `DateManager` und die zugehörigen Methoden gemäß des
 ```mermaid
 classDiagram
     class DateManager {
-        +getCurrentDate() LocalDate$;
-        +getCurrentTime() LocalTime$;
-        +calculateDaysBetween(birthday: LocalDate) long$;
-        +getWeekDay(birthday: LocalDate) String$;
+        +getCurrentDate(): LocalDate$;
+        +getCurrentTime(): LocalTime$;
+        +calculateDaysBetween(birthday: LocalDate): long$;
+        +getWeekDay(birthday: LocalDate): String$;
     }
 ```
 
